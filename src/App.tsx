@@ -255,14 +255,8 @@ const ServicesList = () => {
     },
   ];
   return (
-    <section id="services" className="relative py-24 overflow-hidden min-h-[800px] bg-black w-full">
+    <section id="services" className="relative py-24 overflow-hidden bg-black w-full">
       <div className="absolute inset-0 z-0" style={{ background: 'radial-gradient(circle at 30% 70%, #0a0a0a 0%, transparent 45%), radial-gradient(circle at 70% 30%, #111 0%, transparent 45%)', width: '100%', height: '100%' }} />
-      <div className="max-w-7xl mx-auto px-6 relative z-10 mb-24">
-        <div className="text-center">
-          <h2 className="text-4xl md:text-6xl font-bold text-amber-500 mb-6">Miksi valita Södergård?</h2>
-          <p className="text-gray-400 text-xl max-w-2xl mx-auto">Perinteinen rakentaminen modernilla otteella.</p>
-        </div>
-      </div>
       <div className="space-y-32 relative z-10">
         {services.map((s, i) => (
           <ServiceRow key={i} index={i} title={s.title} icon={s.icon} description={s.desc} ctaText={s.cta} />
@@ -458,6 +452,7 @@ const App = () => {
             }
           }} />
           <SodergardWhyParallax />
+          <ServicesList />
           <References />
           <ContactSection />
           <Footer />
