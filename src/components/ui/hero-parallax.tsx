@@ -35,26 +35,26 @@ export const HeroParallax = ({
     springConfig
   );
   const rotateX = useSpring(
-    useTransform(scrollYProgress, [0, 0.02], [3, 0]),
+    useTransform(scrollYProgress, [0, 1], [0, 0]),
     springConfig
   );
   const opacity = useSpring(
-    useTransform(scrollYProgress, [0, 0.01], [0.95, 1]),
+    useTransform(scrollYProgress, [0, 0.05], [0.9, 1]),
     springConfig
   );
   const rotateZ = useSpring(
-    useTransform(scrollYProgress, [0, 0.02], [4, 0]),
+    useTransform(scrollYProgress, [0, 1], [0, 0]),
     springConfig
   );
   const translateY = useSpring(
-    useTransform(scrollYProgress, [0, 0.02], [0, 0]),
+    useTransform(scrollYProgress, [0, 1], [0, 0]),
     springConfig
   );
 
   return (
     <div
       ref={ref}
-      className="h-[120vh] py-16 overflow-hidden antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d]"
+      className="h-[100vh] py-16 overflow-hidden antialiased relative flex flex-col justify-center"
     >
       <motion.div
         style={{
