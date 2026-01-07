@@ -35,19 +35,19 @@ export const HeroParallax = ({
     springConfig
   );
   const rotateX = useSpring(
-    useTransform(scrollYProgress, [0, 0.15], [8, 0]),
+    useTransform(scrollYProgress, [0, 0.08], [6, 0]),
     springConfig
   );
   const opacity = useSpring(
-    useTransform(scrollYProgress, [0, 0.1], [0.6, 1]),
+    useTransform(scrollYProgress, [0, 0.05], [0.8, 1]),
     springConfig
   );
   const rotateZ = useSpring(
-    useTransform(scrollYProgress, [0, 0.15], [10, 0]),
+    useTransform(scrollYProgress, [0, 0.08], [8, 0]),
     springConfig
   );
   const translateY = useSpring(
-    useTransform(scrollYProgress, [0, 0.15], [-100, 50]),
+    useTransform(scrollYProgress, [0, 0.08], [-50, 20]),
     springConfig
   );
 
