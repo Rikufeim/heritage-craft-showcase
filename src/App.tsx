@@ -133,16 +133,18 @@ const Hero = ({
         <div className="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-black via-black/90 to-transparent z-10 pointer-events-none"></div>
         
         <div className="p-6 max-w-7xl mx-auto relative z-20 w-full pt-48 md:pt-56 flex flex-col items-start justify-start">
-          <h1 className="text-3xl md:text-5xl font-bold text-white leading-tight">
+          <h1 className="text-3xl md:text-5xl font-playfair font-bold text-white leading-tight">
             Perinteinen käsityö.<br />
             Moderni toteutus.<br />
             <span className="text-amber-500">Ajaton lopputulos.</span>
           </h1>
           <p className="mt-4 text-lg text-gray-300 max-w-xl">
-            Kunnioitamme menneisyyttä ja rakennamme kestävää tulevaisuutta säilyttämällä Suomen rikasta rakennusperintöä.
+            Palvelemme teitä perinne- ja korjausrakentamisen saralla.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-start items-center mt-6">
-            <GradientButton onClick={() => onNavigate('contact')}>
+            <GradientButton onClick={() => {
+              document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+            }}>
               Ota yhteyttä
               <ArrowRight size={20} />
             </GradientButton>
@@ -226,10 +228,14 @@ const PerinteetSection = () => {
     <>
       <div className="flex flex-col md:flex-row-reverse items-center gap-8 md:gap-16 w-full max-w-7xl mx-auto px-6 md:px-12">
         <div className="flex-1 space-y-6 text-left">
-          <h3 className="text-3xl md:text-4xl font-bold text-white">Perinteet</h3>
+          <h3 className="text-3xl md:text-4xl font-playfair font-bold text-heading">Perinteet</h3>
           <p className="text-gray-400 text-lg leading-relaxed">
             Kunnioitamme perinteitä käyttämällä tekniikoita ja materiaaleja, jotka säilyttävät vanhojen rakennusten hengen modernin työkalun avulla.
           </p>
+          <GradientButton onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
+            Ota yhteyttä
+            <ArrowRight size={20} />
+          </GradientButton>
         </div>
         <div className="flex-1 w-full">
           <div className="grid grid-cols-2 gap-4">
@@ -293,13 +299,13 @@ const AboutSection = () => {
       <section id="about" className="relative py-24 px-6 bg-black">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-6xl font-black text-amber-500 uppercase tracking-wider">
+            <h2 className="text-4xl md:text-6xl font-playfair font-black text-heading uppercase tracking-wider">
               Meistä
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
             <div className="space-y-6">
-              <h3 className="text-2xl md:text-3xl font-bold text-white">
+              <h3 className="text-2xl md:text-3xl font-playfair font-bold text-heading">
                 Restaurointi Södergård Oy
               </h3>
               <p className="text-gray-400 text-lg leading-relaxed">
@@ -380,7 +386,7 @@ const ContactSection = () => {
           {/* Left - Company Info */}
           <div className="space-y-8">
             <div>
-              <h2 className="text-3xl md:text-4xl font-black text-amber-500 uppercase tracking-tight mb-8">
+              <h2 className="text-3xl md:text-4xl font-playfair font-black text-heading uppercase tracking-tight mb-8">
                 Restaurointi Södergård Oy
               </h2>
               <div className="space-y-4 text-gray-300">
@@ -411,7 +417,7 @@ const ContactSection = () => {
           </div>
           {/* Right - Billing Info */}
           <div className="space-y-8">
-            <h3 className="text-2xl font-bold text-amber-500 mb-6">Laskutustiedot</h3>
+            <h3 className="text-2xl font-playfair font-bold text-heading mb-6">Laskutustiedot</h3>
             <div className="bg-neutral-900 border border-neutral-700 rounded-2xl p-8 space-y-6">
               <div className="space-y-4">
                 <div>
