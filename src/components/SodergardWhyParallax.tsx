@@ -8,7 +8,7 @@ export default function SodergardWhyParallax() {
       {/* Header centered over images */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-none">
         <div className="bg-black/80 backdrop-blur-sm px-8 py-4 rounded-xl">
-          <h2 className="text-3xl md:text-5xl font-bold text-amber-500 whitespace-nowrap">
+          <h2 className="text-3xl md:text-5xl font-playfair font-bold text-heading whitespace-nowrap">
             Miksi valita Södergård?
           </h2>
         </div>

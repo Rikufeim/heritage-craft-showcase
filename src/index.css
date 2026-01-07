@@ -58,6 +58,9 @@ All colors MUST be HSL.
     --gold: 38 92% 50%;
     --gold-light: 45 93% 58%;
     --gold-dark: 32 81% 43%;
+    
+    /* Dark heading color - like reference image */
+    --heading: 20 10% 15%;
   }
 
   .dark {
@@ -101,6 +104,9 @@ All colors MUST be HSL.
     --gold: 38 92% 50%;
     --gold-light: 45 93% 58%;
     --gold-dark: 32 81% 43%;
+    
+    /* Dark heading color - for dark theme use light color */
+    --heading: 45 10% 90%;
   }
 }
 
