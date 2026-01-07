@@ -53,6 +53,11 @@ All colors MUST be HSL.
     --sidebar-border: 220 13% 91%;
 
     --sidebar-ring: 217.2 91.2% 59.8%;
+    
+    /* Gold accent colors */
+    --gold: 38 92% 50%;
+    --gold-light: 45 93% 58%;
+    --gold-dark: 32 81% 43%;
   }
 
   .dark {
@@ -91,6 +96,11 @@ All colors MUST be HSL.
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+    
+    /* Gold accent colors */
+    --gold: 38 92% 50%;
+    --gold-light: 45 93% 58%;
+    --gold-dark: 32 81% 43%;
   }
 }
 
@@ -101,5 +111,20 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* Add subtle gold glow effects */
+@layer utilities {
+  .glow-gold {
+    box-shadow: 0 0 20px hsl(38 92% 50% / 0.3), 0 0 40px hsl(38 92% 50% / 0.1);
+  }
+  
+  .glow-gold-sm {
+    box-shadow: 0 0 10px hsl(38 92% 50% / 0.2);
+  }
+  
+  .border-gold-gradient {
+    border-image: linear-gradient(135deg, hsl(32 81% 43%), hsl(45 93% 58%), hsl(32 81% 43%)) 1;
   }
 }
