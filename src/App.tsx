@@ -30,13 +30,13 @@ const GradientButton = ({
   onClick?: () => void;
 }) => {
   return <button className={`relative group inline-flex items-center justify-center rounded-full min-w-[120px] px-6 py-2.5 text-sm leading-[18px] font-[600] uppercase tracking-wide focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-neutral-400 disabled:pointer-events-none disabled:opacity-50 transition-all duration-300 hover:scale-105 active:scale-95 overflow-hidden ${className}`} {...props}>
-      {/* Base Layer: Shiny black background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-neutral-800 via-black to-neutral-900 rounded-full z-0 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1),0_4px_20px_rgba(0,0,0,0.5)]" />
+      {/* Base Layer: White background */}
+      <div className="absolute inset-0 bg-white rounded-full z-0 shadow-[0_4px_20px_rgba(0,0,0,0.15)]" />
       {/* Shine effect on hover */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full z-10" />
-      {/* Border */}
-      <div className="absolute inset-0 rounded-full border border-neutral-600 group-hover:border-neutral-500 transition-colors duration-300 z-10" />
-      <span className="relative z-20 flex items-center gap-2 text-white">{children}</span>
+      <div className="absolute inset-0 bg-gradient-to-b from-black/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full z-10" />
+      {/* Border - gold heading color */}
+      <div className="absolute inset-0 rounded-full border-2 border-heading group-hover:border-heading transition-colors duration-300 z-10" />
+      <span className="relative z-20 flex items-center gap-2 text-neutral-900">{children}</span>
     </button>;
 };
 
@@ -133,10 +133,10 @@ const Hero = ({
         <div className="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-black via-black/90 to-transparent z-10 pointer-events-none"></div>
         
         <div className="p-6 max-w-7xl mx-auto relative z-20 w-full pt-48 md:pt-56 flex flex-col items-start justify-start">
-          <h1 className="text-3xl md:text-5xl font-playfair font-bold text-white leading-tight">
+          <h1 className="text-3xl md:text-5xl font-playfair font-bold text-heading leading-tight">
             Perinteinen käsityö.<br />
             Moderni toteutus.<br />
-            <span className="text-amber-500">Ajaton lopputulos.</span>
+            <span className="text-heading">Ajaton lopputulos.</span>
           </h1>
           <p className="mt-4 text-lg text-gray-300 max-w-xl">
             Palvelemme teitä perinne- ja korjausrakentamisen saralla.
@@ -149,7 +149,7 @@ const Hero = ({
               <ArrowRight size={20} />
             </GradientButton>
             <div className="flex items-center gap-2 px-6 py-4 text-white font-medium">
-              <CheckCircle2 className="text-amber-500" size={20} />
+              <CheckCircle2 className="text-heading" size={20} />
               <span>Perinteinen osaaminen</span>
             </div>
           </div>
@@ -355,22 +355,22 @@ const FloatingContactButton = () => {
   const [isOpen, setIsOpen] = useState(false);
   return <div className="fixed bottom-6 right-6 z-50">
       {/* Contact popup */}
-      {isOpen && <div className="absolute bottom-16 right-0 mb-2 bg-black border-2 border-amber-600 rounded-2xl p-4 shadow-2xl shadow-amber-900/30 min-w-[220px] animate-in fade-in slide-in-from-bottom-2 duration-200">
+      {isOpen && <div className="absolute bottom-16 right-0 mb-2 bg-black border-2 border-heading rounded-2xl p-4 shadow-2xl shadow-heading/20 min-w-[220px] animate-in fade-in slide-in-from-bottom-2 duration-200">
           <div className="space-y-3">
-            <a href="tel:+358449700432" className="flex items-center gap-3 text-white hover:text-amber-400 transition-colors font-medium p-2 hover:bg-amber-900/20 rounded-lg">
-              <Phone size={20} className="text-amber-500" />
+            <a href="tel:+358449700432" className="flex items-center gap-3 text-white hover:text-heading transition-colors font-medium p-2 hover:bg-heading/10 rounded-lg">
+              <Phone size={20} className="text-heading" />
               <span>+358 44 970 0432</span>
             </a>
-            <a href="mailto:info@srgd.fi" className="flex items-center gap-3 text-white hover:text-amber-400 transition-colors font-medium p-2 hover:bg-amber-900/20 rounded-lg">
-              <Mail size={20} className="text-amber-500" />
+            <a href="mailto:info@srgd.fi" className="flex items-center gap-3 text-white hover:text-heading transition-colors font-medium p-2 hover:bg-heading/10 rounded-lg">
+              <Mail size={20} className="text-heading" />
               <span>info@srgd.fi</span>
             </a>
           </div>
         </div>}
       
       {/* Phone button */}
-      <button onClick={() => setIsOpen(!isOpen)} className="w-14 h-14 bg-black border-2 border-amber-600 rounded-full flex items-center justify-center shadow-xl shadow-amber-900/30 hover:scale-110 hover:border-amber-500 transition-all duration-300 group">
-        {isOpen ? <X size={24} className="text-amber-500 group-hover:text-amber-400" /> : <Phone size={24} className="text-amber-500 group-hover:text-amber-400" />}
+      <button onClick={() => setIsOpen(!isOpen)} className="w-14 h-14 bg-black border-2 border-heading rounded-full flex items-center justify-center shadow-xl shadow-heading/20 hover:scale-110 transition-all duration-300 group">
+        {isOpen ? <X size={24} className="text-heading" /> : <Phone size={24} className="text-heading" />}
       </button>
     </div>;
 };
