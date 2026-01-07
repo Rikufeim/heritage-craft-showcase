@@ -327,8 +327,54 @@ const References = () => {
 };
 
 /**
+ * FloatingContactButton
+ * Floating phone button that shows contact options.
+ */
+const FloatingContactButton = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  
+  return (
+    <div className="fixed bottom-6 right-6 z-50">
+      {/* Contact popup */}
+      {isOpen && (
+        <div className="absolute bottom-16 right-0 mb-2 bg-black border-2 border-amber-600 rounded-2xl p-4 shadow-2xl shadow-amber-900/30 min-w-[220px] animate-in fade-in slide-in-from-bottom-2 duration-200">
+          <div className="space-y-3">
+            <a 
+              href="tel:+358449700432" 
+              className="flex items-center gap-3 text-white hover:text-amber-400 transition-colors font-medium p-2 hover:bg-amber-900/20 rounded-lg"
+            >
+              <Phone size={20} className="text-amber-500" />
+              <span>+358 44 970 0432</span>
+            </a>
+            <a 
+              href="mailto:info@srgd.fi" 
+              className="flex items-center gap-3 text-white hover:text-amber-400 transition-colors font-medium p-2 hover:bg-amber-900/20 rounded-lg"
+            >
+              <Mail size={20} className="text-amber-500" />
+              <span>info@srgd.fi</span>
+            </a>
+          </div>
+        </div>
+      )}
+      
+      {/* Phone button */}
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-14 h-14 bg-black border-2 border-amber-600 rounded-full flex items-center justify-center shadow-xl shadow-amber-900/30 hover:scale-110 hover:border-amber-500 transition-all duration-300 group"
+      >
+        {isOpen ? (
+          <X size={24} className="text-amber-500 group-hover:text-amber-400" />
+        ) : (
+          <Phone size={24} className="text-amber-500 group-hover:text-amber-400" />
+        )}
+      </button>
+    </div>
+  );
+};
+
+/**
  * ContactSection
- * Displays contact information and a simple form for messages.
+ * Displays company and billing information.
  */
 const ContactSection = () => {
   return (
@@ -375,32 +421,34 @@ const ContactSection = () => {
               />
             </div>
           </div>
-          {/* Right - Message Form */}
-          <div className="space-y-6">
-            <h3 className="text-2xl font-bold text-amber-500 mb-6">Ota yhteyttä</h3>
-            <form className="space-y-5">
-              <div className="space-y-2">
-                <label className="text-sm font-bold text-gray-400 ml-1">Nimi</label>
-                <input type="text" className="w-full bg-neutral-900 border border-neutral-700 rounded-xl px-6 py-4 text-white focus:outline-none focus:ring-2 focus:ring-amber-600 transition-all placeholder:text-gray-600" placeholder="Etunimi Sukunimi" />
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <label className="text-sm font-bold text-gray-400 ml-1">Puhelinnumero</label>
-                  <input type="tel" className="w-full bg-neutral-900 border border-neutral-700 rounded-xl px-6 py-4 text-white focus:outline-none focus:ring-2 focus:ring-amber-600 transition-all placeholder:text-gray-600" placeholder="040 123 4567" />
+          {/* Right - Billing Info */}
+          <div className="space-y-8">
+            <h3 className="text-2xl font-bold text-amber-500 mb-6">Laskutustiedot</h3>
+            <div className="bg-neutral-900 border border-neutral-700 rounded-2xl p-8 space-y-6">
+              <div className="space-y-4">
+                <div>
+                  <p className="text-gray-400 text-sm font-medium mb-1">Yritys</p>
+                  <p className="text-white font-bold text-lg">Restaurointi Södergård Oy</p>
                 </div>
-                <div className="space-y-2">
-                  <label className="text-sm font-bold text-gray-400 ml-1">Sähköposti</label>
-                  <input type="email" className="w-full bg-neutral-900 border border-neutral-700 rounded-xl px-6 py-4 text-white focus:outline-none focus:ring-2 focus:ring-amber-600 transition-all placeholder:text-gray-600" placeholder="sahko@posti.fi" />
+                <div>
+                  <p className="text-gray-400 text-sm font-medium mb-1">Y-tunnus</p>
+                  <p className="text-white font-medium">2569281-6</p>
+                </div>
+                <div>
+                  <p className="text-gray-400 text-sm font-medium mb-1">Osoite</p>
+                  <p className="text-white font-medium">Ahlaistentie 648</p>
+                  <p className="text-white font-medium">29700 Ahlainen</p>
+                </div>
+                <div>
+                  <p className="text-gray-400 text-sm font-medium mb-1">Verkkolaskuosoite</p>
+                  <p className="text-white font-medium">003725692816</p>
+                </div>
+                <div>
+                  <p className="text-gray-400 text-sm font-medium mb-1">Operaattori</p>
+                  <p className="text-white font-medium">Apix Messaging Oy (003723327487)</p>
                 </div>
               </div>
-              <div className="space-y-2">
-                <label className="text-sm font-bold text-gray-400 ml-1">Viesti</label>
-                <textarea rows={5} className="w-full bg-neutral-900 border border-neutral-700 rounded-xl px-6 py-4 text-white focus:outline-none focus:ring-2 focus:ring-amber-600 transition-all resize-none placeholder:text-gray-600" placeholder="Kerro lyhyesti toiveistasi..."></textarea>
-              </div>
-              <button type="button" className="w-full bg-amber-700 text-black font-bold text-lg py-4 rounded-xl hover:bg-amber-600 transition-all hover:scale-[1.01] active:scale-[0.99] shadow-lg shadow-amber-500/30">
-                Lähetä viesti
-              </button>
-            </form>
+            </div>
           </div>
         </div>
       </div>
@@ -442,6 +490,7 @@ const App = () => {
   };
   return (
     <div className="bg-black min-h-screen font-sans antialiased selection:bg-amber-900 selection:text-black text-white">
+      <FloatingContactButton />
       {view === 'home' ? (
         <div className="flex flex-col">
           <Hero onNavigate={dest => {
