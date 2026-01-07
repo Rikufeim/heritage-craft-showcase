@@ -25,8 +25,8 @@ const RestaurointiSection = () => {
   ];
 
   return (
-    <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16 w-full max-w-7xl mx-auto px-6 md:px-12">
-      {/* Left: Text */}
+    <div className="flex flex-col md:flex-row-reverse items-center gap-8 md:gap-16 w-full max-w-7xl mx-auto px-6 md:px-12">
+      {/* Right: Text */}
       <div className="flex-1 space-y-6 text-left">
         <h3 className="text-3xl md:text-4xl font-bold text-white">Restaurointi</h3>
         <p className="text-gray-400 text-lg leading-relaxed">
@@ -40,7 +40,7 @@ const RestaurointiSection = () => {
         </div>
       </div>
 
-      {/* Right: Image Grid */}
+      {/* Left: Image Grid */}
       <div className="flex-1 w-full">
         <div className="grid grid-cols-2 gap-3">
           <div className="relative overflow-hidden rounded-2xl border border-neutral-700 shadow-xl bg-neutral-900 aspect-[4/3]">
