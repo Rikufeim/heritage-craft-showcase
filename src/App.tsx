@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import SodergardWhyParallax from './components/SodergardWhyParallax';
 import LaatuSection from './components/LaatuSection';
 import RestaurointiSection from './components/RestaurointiSection';
+import KorjauksetSection from './components/KorjauksetSection';
 import { Menu, X, ArrowRight, ArrowLeft, Phone, Mail, MapPin, CheckCircle2, Hammer, Ruler, Shield, Paintbrush } from 'lucide-react';
 
 // NOTE: Images below are placeholders. In a real project you would replace these
@@ -209,11 +210,6 @@ const getRestorationPhotoId = (i: number) => {
  */
 const ServicesList = () => {
   const services = [{
-    title: 'Korjaukset',
-    icon: Ruler,
-    desc: 'Korjausrakentamisessa erikoisosaamistamme ovat haastavat kohteet, kuten hirsirakennusten nosto ja siirto sekä rakenteiden vahvistus.',
-    cta: 'Tutustu projekteihin'
-  }, {
     title: 'Perinteet',
     icon: Shield,
     desc: 'Kunnioitamme perinteitä käyttämällä tekniikoita ja materiaaleja, jotka säilyttävät vanhojen rakennusten hengen modernin työkalun avulla.',
@@ -230,6 +226,8 @@ const ServicesList = () => {
         <LaatuSection />
         {/* Restaurointi section with images */}
         <RestaurointiSection />
+        {/* Korjaukset section with images */}
+        <KorjauksetSection />
         {services.map((s, i) => <ServiceRow key={i} index={i + 1} title={s.title} icon={s.icon} description={s.desc} ctaText={s.cta} />)}
       </div>
     </section>;

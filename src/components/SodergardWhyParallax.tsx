@@ -24,11 +24,11 @@ export const products = [
   { title: "Tiilirakenteet", thumbnail: "/sodergard/2.jpg" },
   { title: "Puuliitokset", thumbnail: "/sodergard/3.jpg" },
   { title: "Historiallinen rakennus", thumbnail: "/sodergard/5.jpg" },
-  { title: "Restaurointi", thumbnail: "/palvelut/restaurointi-3.jpg" },
+  { title: "Korjaustyö", thumbnail: "/palvelut/korjaukset-1.jpg" },
 
   { title: "Hirsirakentaminen 2", thumbnail: "/sodergard/1.jpg" },
   { title: "Tiilirakenteet 2", thumbnail: "/sodergard/2.jpg" },
   { title: "Puuliitokset 2", thumbnail: "/sodergard/3.jpg" },
   { title: "Historiallinen rakennus 2", thumbnail: "/sodergard/5.jpg" },
-  { title: "Restaurointi 2", thumbnail: "/palvelut/restaurointi-1.jpg" },
+  { title: "Korjaustyö 2", thumbnail: "/palvelut/korjaukset-2.jpg" },
 ];
