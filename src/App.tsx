@@ -129,7 +129,7 @@ const Hero = ({ onNavigate }: { onNavigate: (dest: string) => void }) => {
         <FloatingDock onNavigate={onNavigate} />
         
         {/* Full-width video background - positioned below nav */}
-        <div className="absolute top-20 left-0 right-0 bottom-0 z-0">
+        <div className="absolute top-20 left-6 right-6 bottom-0 z-0 rounded-t-[2rem] overflow-hidden">
           <video
             autoPlay
             loop
@@ -140,16 +140,17 @@ const Hero = ({ onNavigate }: { onNavigate: (dest: string) => void }) => {
             <source src="/videos/hero-video.mov" type="video/quicktime" />
             <source src="/videos/hero-video.mov" type="video/mp4" />
           </video>
-          {/* Dark overlay for text readability */}
-          <div className="absolute inset-0 bg-black/50 pointer-events-none"></div>
+          {/* Multi-layer fade for depth */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black pointer-events-none"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent pointer-events-none"></div>
         </div>
         
         {/* Golden glow effect at top-left corner */}
         <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-10" style={{ background: 'radial-gradient(circle at 5% 10%, rgba(245, 158, 11, 0.35), transparent 25%)' }}></div>
         {/* Spotlight effect */}
         <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-10" style={{ background: 'radial-gradient(ellipse at 40% 30%, rgba(255, 215, 128, 0.15), transparent 60%)' }}></div>
-        {/* Bottom fade */}
-        <div className="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-black via-black/80 to-transparent z-10 pointer-events-none"></div>
+        {/* Bottom fade - stronger */}
+        <div className="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-black via-black/90 to-transparent z-10 pointer-events-none"></div>
         
         <div className="p-6 max-w-7xl mx-auto relative z-20 w-full pt-32 flex flex-col items-start justify-start">
           <div className="inline-block px-4 py-1.5 mb-4 rounded-full border border-amber-700 bg-amber-900/20 text-amber-300 text-sm font-bold tracking-wide">
