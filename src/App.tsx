@@ -106,8 +106,8 @@ const Hero = ({
       <section id="hero" className="min-h-[40rem] rounded-b-[2.5rem] flex flex-col items-start justify-start bg-black antialiased relative overflow-hidden border-b border-neutral-800 shadow-2xl w-full">
         <FloatingDock onNavigate={onNavigate} />
         
-        {/* Full-width video background - positioned below nav */}
-        <div className="absolute top-20 left-6 right-6 bottom-0 z-0 rounded-t-[2rem] overflow-hidden">
+        {/* Full-width video background */}
+        <div className="absolute top-20 left-0 right-0 bottom-0 z-0 rounded-t-[2rem] overflow-hidden mx-0">
           <video autoPlay loop muted playsInline className="w-full h-full object-cover">
             <source src="/videos/hero-video.mov" type="video/quicktime" />
             <source src="/videos/hero-video.mov" type="video/mp4" />
@@ -129,9 +129,6 @@ const Hero = ({
         <div className="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-black via-black/90 to-transparent z-10 pointer-events-none"></div>
         
         <div className="p-6 max-w-7xl mx-auto relative z-20 w-full pt-32 flex flex-col items-start justify-start">
-          <div className="inline-block px-4 py-1.5 mb-4 rounded-full border border-amber-700 bg-amber-900/20 text-amber-300 text-sm font-bold tracking-wide">
-            INTOHIMONA RESTAUROINTI
-          </div>
           <h1 className="text-3xl md:text-5xl font-bold text-white leading-tight">
             Laadukasta<br />
             rakennuskannan<br />
