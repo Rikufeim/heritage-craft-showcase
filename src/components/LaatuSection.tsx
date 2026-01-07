@@ -7,9 +7,9 @@ const GradientButton = ({
   children: React.ReactNode;
   className?: string;
 }) => {
-  return <button className={`relative group inline-flex items-center justify-center rounded-[4px] min-w-[132px] px-9 py-4 text-base leading-[19px] font-[600] uppercase tracking-wide focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-amber-400 disabled:pointer-events-none disabled:opacity-50 transition-transform duration-300 hover:scale-105 active:scale-95 overflow-hidden shadow-lg ${className}`}>
-      <div className="absolute inset-0 bg-black border border-amber-700 rounded-[4px] z-0" />
-      <div className="absolute inset-0 bg-gradient-to-r from-amber-700 via-amber-500 to-amber-700 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
+  return <button className={`relative group inline-flex items-center justify-center rounded-full min-w-[120px] px-6 py-2.5 text-sm leading-[18px] font-[600] uppercase tracking-wide focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-amber-400 disabled:pointer-events-none disabled:opacity-50 transition-transform duration-300 hover:scale-105 active:scale-95 overflow-hidden shadow-lg ${className}`}>
+      <div className="absolute inset-0 bg-black border border-amber-700 rounded-full z-0" />
+      <div className="absolute inset-0 bg-gradient-to-r from-amber-700 via-amber-500 to-amber-700 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full z-10" />
       <span className="relative z-20 flex items-center gap-2 text-white">{children}</span>
     </button>;
 };

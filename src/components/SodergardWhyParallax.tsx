@@ -5,10 +5,10 @@ import { HeroParallax } from "@/components/ui/hero-parallax";
 export default function SodergardWhyParallax() {
   return (
     <section className="relative bg-black w-full">
-      {/* Header positioned at top */}
-      <div className="absolute top-0 left-0 right-0 z-20 pt-16">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <h2 className="text-4xl md:text-6xl font-bold text-amber-500">
+      {/* Header centered over images */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-none">
+        <div className="bg-black/80 backdrop-blur-sm px-8 py-4 rounded-xl">
+          <h2 className="text-3xl md:text-5xl font-bold text-amber-500 whitespace-nowrap">
             Miksi valita Södergård?
           </h2>
         </div>
