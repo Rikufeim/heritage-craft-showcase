@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import SodergardWhyParallax from './components/SodergardWhyParallax';
 import LaatuSection from './components/LaatuSection';
+import RestaurointiSection from './components/RestaurointiSection';
 import { Menu, X, ArrowRight, ArrowLeft, Phone, Mail, MapPin, CheckCircle2, Hammer, Ruler, Shield, Paintbrush } from 'lucide-react';
 
 // NOTE: Images below are placeholders. In a real project you would replace these
@@ -26,11 +27,11 @@ const GradientButton = ({
   className?: string;
   onClick?: () => void;
 }) => {
-  return <button className={`relative group inline-flex items-center justify-center rounded-[4px] min-w-[132px] px-9 py-4 text-base leading-[19px] font-[600] uppercase tracking-wide focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-amber-400 disabled:pointer-events-none disabled:opacity-50 transition-transform duration-300 hover:scale-105 active:scale-95 overflow-hidden shadow-lg ${className}`} {...props}>
+  return <button className={`relative group inline-flex items-center justify-center rounded-full min-w-[120px] px-6 py-2.5 text-sm leading-[18px] font-[600] uppercase tracking-wide focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-amber-400 disabled:pointer-events-none disabled:opacity-50 transition-transform duration-300 hover:scale-105 active:scale-95 overflow-hidden shadow-lg ${className}`} {...props}>
       {/* Base Layer: Black background */}
-      <div className="absolute inset-0 bg-black border border-amber-700 rounded-[4px] z-0" />
+      <div className="absolute inset-0 bg-black border border-amber-700 rounded-full z-0" />
       {/* Hover Layer: Gold gradient */}
-      <div className="absolute inset-0 bg-gradient-to-r from-amber-700 via-amber-500 to-amber-700 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
+      <div className="absolute inset-0 bg-gradient-to-r from-amber-700 via-amber-500 to-amber-700 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full z-10" />
       <span className="relative z-20 flex items-center gap-2 text-white">{children}</span>
     </button>;
 };
@@ -116,13 +117,13 @@ const Hero = ({
           <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent pointer-events-none"></div>
         </div>
         
-        {/* Golden glow effect at top-left corner */}
+        {/* Golden glow effect at top-left corner - reduced */}
         <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-10" style={{
-        background: 'radial-gradient(circle at 5% 10%, rgba(245, 158, 11, 0.35), transparent 25%)'
+        background: 'radial-gradient(circle at 5% 10%, rgba(245, 158, 11, 0.15), transparent 20%)'
       }}></div>
-        {/* Spotlight effect */}
+        {/* Spotlight effect - reduced */}
         <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-10" style={{
-        background: 'radial-gradient(ellipse at 40% 30%, rgba(255, 215, 128, 0.15), transparent 60%)'
+        background: 'radial-gradient(ellipse at 40% 30%, rgba(255, 215, 128, 0.08), transparent 50%)'
       }}></div>
         {/* Bottom fade - stronger */}
         <div className="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-black via-black/90 to-transparent z-10 pointer-events-none"></div>
@@ -209,11 +210,6 @@ const getRestorationPhotoId = (i: number) => {
  */
 const ServicesList = () => {
   const services = [{
-    title: 'Restaurointi',
-    icon: Hammer,
-    desc: 'Olemme erikoistuneet puurakennuksien ja perinteisten kohteiden restaurointiin ja entisöintiin.',
-    cta: 'Lue lisää'
-  }, {
     title: 'Korjaukset',
     icon: Ruler,
     desc: 'Korjausrakentamisessa erikoisosaamistamme ovat haastavat kohteet, kuten hirsirakennusten nosto ja siirto sekä rakenteiden vahvistus.',
@@ -233,6 +229,8 @@ const ServicesList = () => {
       <div className="space-y-32 relative z-10">
         {/* Laatu section with 2x2 grid */}
         <LaatuSection />
+        {/* Restaurointi section with images */}
+        <RestaurointiSection />
         {services.map((s, i) => <ServiceRow key={i} index={i + 1} title={s.title} icon={s.icon} description={s.desc} ctaText={s.cta} />)}
       </div>
     </section>;
