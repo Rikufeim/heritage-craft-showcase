@@ -6,14 +6,11 @@ export default function SodergardWhyParallax() {
   return (
     <section className="relative bg-black w-full">
       {/* Header positioned at top */}
-      <div className="absolute top-0 left-0 right-0 z-20 pt-16 pb-8">
+      <div className="absolute top-0 left-0 right-0 z-20 pt-16">
         <div className="max-w-7xl mx-auto px-6 text-center">
-          <h2 className="text-4xl md:text-6xl font-bold text-amber-500 mb-4">
+          <h2 className="text-4xl md:text-6xl font-bold text-amber-500">
             Miksi valita Södergård?
           </h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Perinteinen rakentaminen modernilla otteella.
-          </p>
         </div>
       </div>
 
