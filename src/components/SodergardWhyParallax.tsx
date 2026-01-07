@@ -34,10 +34,4 @@ export const products = [
   { title: "Puuliitokset 2", thumbnail: "/sodergard/3.jpg" },
   { title: "Restaurointi 2", thumbnail: "/sodergard/4.jpg" },
   { title: "Historiallinen rakennus 2", thumbnail: "/sodergard/5.jpg" },
-
-  { title: "Hirsirakentaminen 3", thumbnail: "/sodergard/1.jpg" },
-  { title: "Tiilirakenteet 3", thumbnail: "/sodergard/2.jpg" },
-  { title: "Puuliitokset 3", thumbnail: "/sodergard/3.jpg" },
-  { title: "Restaurointi 3", thumbnail: "/sodergard/4.jpg" },
-  { title: "Historiallinen rakennus 3", thumbnail: "/sodergard/5.jpg" },
 ];
