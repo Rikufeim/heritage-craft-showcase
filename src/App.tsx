@@ -58,8 +58,8 @@ const FloatingDock = ({
     href: '#services',
     action: () => onNavigate('home')
   }, {
-    name: 'Referenssit',
-    href: '#references',
+    name: 'Meistä',
+    href: '#about',
     action: () => onNavigate('home')
   }, {
     name: 'Yhteystiedot',
@@ -208,13 +208,38 @@ const getRestorationPhotoId = (i: number) => {
  * ServicesList
  * Lists the core values/services offered by the company.
  */
+/**
+ * PerinteetSection
+ * Perinteet-osio kuvilla.
+ */
+const PerinteetSection = () => {
+  return <div className="flex flex-col md:flex-row-reverse items-center gap-8 md:gap-16 w-full max-w-7xl mx-auto px-6 md:px-12">
+    <div className="flex-1 space-y-6 text-left">
+      <h3 className="text-3xl md:text-4xl font-bold text-white">Perinteet</h3>
+      <p className="text-gray-400 text-lg leading-relaxed">
+        Kunnioitamme perinteitä käyttämällä tekniikoita ja materiaaleja, jotka säilyttävät vanhojen rakennusten hengen modernin työkalun avulla.
+      </p>
+    </div>
+    <div className="flex-1 w-full">
+      <div className="grid grid-cols-2 gap-4">
+        <div className="relative aspect-square overflow-hidden rounded-xl border border-neutral-700">
+          <img src="/palvelut/perinteet-1.jpg" alt="Perinteet 1" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+        </div>
+        <div className="relative aspect-square overflow-hidden rounded-xl border border-neutral-700">
+          <img src="/palvelut/perinteet-2.jpg" alt="Perinteet 2" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+        </div>
+        <div className="relative aspect-square overflow-hidden rounded-xl border border-neutral-700">
+          <img src="/palvelut/perinteet-3.jpg" alt="Perinteet 3" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+        </div>
+        <div className="relative aspect-square overflow-hidden rounded-xl border border-neutral-700">
+          <img src="/palvelut/perinteet-4.jpg" alt="Perinteet 4" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+        </div>
+      </div>
+    </div>
+  </div>;
+};
+
 const ServicesList = () => {
-  const services = [{
-    title: 'Perinteet',
-    icon: Shield,
-    desc: 'Kunnioitamme perinteitä käyttämällä tekniikoita ja materiaaleja, jotka säilyttävät vanhojen rakennusten hengen modernin työkalun avulla.',
-    cta: 'Lue tarinamme'
-  }];
   return <section id="services" className="relative py-24 overflow-hidden bg-black w-full">
       <div className="absolute inset-0 z-0" style={{
       background: 'radial-gradient(circle at 30% 70%, #0a0a0a 0%, transparent 45%), radial-gradient(circle at 70% 30%, #111 0%, transparent 45%)',
@@ -228,47 +253,56 @@ const ServicesList = () => {
         <RestaurointiSection />
         {/* Korjaukset section with images */}
         <KorjauksetSection />
-        {services.map((s, i) => <ServiceRow key={i} index={i + 1} title={s.title} icon={s.icon} description={s.desc} ctaText={s.cta} />)}
+        {/* Perinteet section with images */}
+        <PerinteetSection />
       </div>
     </section>;
 };
 
 /**
- * References
- * Showcases example restoration projects. Clicking on an image opens a larger view.
+ * AboutSection
+ * Meistä-osio kertoo yrityksestä.
  */
-const References = () => {
-  const referenceImages = [ref1, ref2, ref3, ref4];
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
-  return <>
-      <section id="references" className="relative overflow-hidden">
-        {/* Background with overlay */}
-        <div className="relative w-full h-[300px] md:h-[400px]">
-          <img src={heroBanner} alt="Referenssit tausta" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-black/60"></div>
-          <div className="absolute inset-0 flex items-center justify-center">
-            <h2 className="text-4xl md:text-6xl font-black text-amber-500 uppercase tracking-wider drop-shadow-lg">
-              Referenssit
-            </h2>
+const AboutSection = () => {
+  return <section id="about" className="relative py-24 px-6 bg-black">
+    <div className="max-w-7xl mx-auto">
+      <div className="text-center mb-16">
+        <h2 className="text-4xl md:text-6xl font-black text-amber-500 uppercase tracking-wider">
+          Meistä
+        </h2>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+        <div className="space-y-6">
+          <h3 className="text-2xl md:text-3xl font-bold text-white">
+            Restaurointi Södergård Oy
+          </h3>
+          <p className="text-gray-400 text-lg leading-relaxed">
+            Olemme restauroinnin ammattilaisia, jotka ovat erikoistuneet vanhojen rakennusten kunnostamiseen ja säilyttämiseen. Kunnioitamme perinteitä ja käytämme perinteisiä menetelmiä yhdistettynä moderniin osaamiseen.
+          </p>
+          <p className="text-gray-400 text-lg leading-relaxed">
+            Janne ja Jukka ovat työskennelleet restauroinnin parissa vuosikymmeniä ja tuovat projekteihin syvän ymmärryksen historiallisista rakennustekniikoista ja materiaaleista.
+          </p>
+          <p className="text-gray-400 text-lg leading-relaxed">
+            Toimintamme perustuu laatuun, ammattitaitoon ja asiakkaan tarpeiden kuunteluun. Jokainen projekti on meille ainutlaatuinen.
+          </p>
+        </div>
+        <div className="grid grid-cols-2 gap-4">
+          <div className="relative aspect-square overflow-hidden rounded-xl border border-neutral-700">
+            <img src="/sodergard/1.jpg" alt="Restaurointi työ" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+          </div>
+          <div className="relative aspect-square overflow-hidden rounded-xl border border-neutral-700">
+            <img src="/sodergard/2.jpg" alt="Hirsirakentaminen" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+          </div>
+          <div className="relative aspect-square overflow-hidden rounded-xl border border-neutral-700">
+            <img src="/sodergard/3.jpg" alt="Puuliitokset" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+          </div>
+          <div className="relative aspect-square overflow-hidden rounded-xl border border-neutral-700">
+            <img src="/sodergard/5.jpg" alt="Historiallinen rakennus" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
           </div>
         </div>
-        {/* Grid of images */}
-        <div className="bg-black py-12 px-4">
-          <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
-            {referenceImages.map((img, index) => <div key={index} onClick={() => setSelectedImage(img)} className="relative aspect-square overflow-hidden rounded-xl group cursor-pointer">
-                <img src={img} alt={`Referenssi ${index + 1}`} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
-                <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors duration-300"></div>
-              </div>)}
-          </div>
-        </div>
-      </section>
-      {selectedImage && <div className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4 cursor-pointer animate-in fade-in duration-200" onClick={() => setSelectedImage(null)}>
-          <button onClick={() => setSelectedImage(null)} className="absolute top-6 right-6 text-white hover:text-amber-400 transition-colors z-50">
-            <X size={32} />
-          </button>
-          <img src={selectedImage} alt="Referenssi suurennos" className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl animate-in zoom-in-90 duration-300" onClick={e => e.stopPropagation()} />
-        </div>}
-    </>;
+      </div>
+    </div>
+  </section>;
 };
 
 /**
@@ -417,7 +451,7 @@ const App = () => {
       }} />
           <SodergardWhyParallax />
           <ServicesList />
-          <References />
+          <AboutSection />
           <ContactSection />
           <Footer />
         </div> : null}
