@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import SodergardWhyParallax from './components/SodergardWhyParallax';
+import PalvelummeLaatu from './components/PalvelummeLaatu';
 import {
   Menu,
   X,
@@ -240,12 +241,6 @@ const ServicesList = () => {
       icon: Ruler,
       desc: 'Korjausrakentamisessa erikoisosaamistamme ovat haastavat kohteet, kuten hirsirakennusten nosto ja siirto sekä rakenteiden vahvistus.',
       cta: 'Tutustu projekteihin',
-    },
-    {
-      title: 'Laatu',
-      icon: CheckCircle2,
-      desc: 'Laatu on yksi perusarvoistamme. Käytämme vain parhaita materiaaleja ja perinteisiä menetelmiä, joilla varmistetaan kestävä lopputulos.',
-      cta: 'Laadun periaatteet',
     },
     {
       title: 'Perinteet',
@@ -501,6 +496,7 @@ const App = () => {
             }
           }} />
           <SodergardWhyParallax />
+          <PalvelummeLaatu />
           <ServicesList />
           <References />
           <ContactSection />
