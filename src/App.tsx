@@ -134,9 +134,9 @@ const Hero = ({
         
         <div className="p-6 max-w-7xl mx-auto relative z-20 w-full pt-48 md:pt-56 flex flex-col items-start justify-start">
           <h1 className="text-3xl md:text-5xl font-bold text-white leading-tight">
-            Laadukasta<br />
-            rakennuskannan<br />
-            entisöintiä
+            Perinteinen käsityö.<br />
+            Moderni toteutus.<br />
+            <span className="text-amber-500">Ajaton lopputulos.</span>
           </h1>
           <p className="mt-4 text-lg text-gray-300 max-w-xl">
             Kunnioitamme menneisyyttä ja rakennamme kestävää tulevaisuutta säilyttämällä Suomen rikasta rakennusperintöä.
