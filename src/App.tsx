@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import SodergardWhyParallax from './components/SodergardWhyParallax';
 import {
   Menu,
   X,
@@ -456,7 +457,7 @@ const App = () => {
               handleNavigateHome();
             }
           }} />
-          <ServicesList />
+          <SodergardWhyParallax />
           <References />
           <ContactSection />
           <Footer />
