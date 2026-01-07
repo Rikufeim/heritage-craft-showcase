@@ -122,7 +122,7 @@ const Hero = ({ onNavigate }: { onNavigate: (dest: string) => void }) => {
     <div className="bg-black w-full pb-12">
       <section
         id="hero"
-        className="h-[40rem] rounded-b-[2.5rem] flex flex-col items-start justify-start bg-black antialiased relative overflow-hidden border-b border-neutral-800 shadow-2xl w-full"
+        className="min-h-[40rem] rounded-b-[2.5rem] flex flex-col items-start justify-start bg-black antialiased relative overflow-hidden border-b border-neutral-800 shadow-2xl w-full"
       >
         <FloatingDock onNavigate={onNavigate} />
         {/* Golden glow effect at top-left corner - made smaller */}
@@ -131,26 +131,46 @@ const Hero = ({ onNavigate }: { onNavigate: (dest: string) => void }) => {
         <div className="absolute top-0 left-0 w-full h-full pointer-events-none" style={{ background: 'radial-gradient(ellipse at 40% 30%, rgba(255, 215, 128, 0.15), transparent 60%)' }}></div>
         {/* Subtle bottom fade */}
         <div className="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-black via-black/80 to-transparent z-10 pointer-events-none"></div>
-        <div className="p-6 max-w-7xl mx-auto relative z-20 w-full pt-32 flex flex-col items-start justify-start text-left">
-          <div className="inline-block px-4 py-1.5 mb-4 rounded-full border border-amber-700 bg-amber-900/20 text-amber-300 text-sm font-bold tracking-wide">
-            INTOHIMONA RESTAUROINTI
+        <div className="p-6 max-w-7xl mx-auto relative z-20 w-full pt-32 flex flex-col lg:flex-row items-start justify-between gap-12">
+          {/* Left side - Text content */}
+          <div className="flex-1 flex flex-col items-start justify-start text-left">
+            <div className="inline-block px-4 py-1.5 mb-4 rounded-full border border-amber-700 bg-amber-900/20 text-amber-300 text-sm font-bold tracking-wide">
+              INTOHIMONA RESTAUROINTI
+            </div>
+            <h1 className="text-3xl md:text-5xl font-bold text-white leading-tight">
+              Laadukasta<br />
+              rakennuskannan<br />
+              entisöintiä
+            </h1>
+            <p className="mt-4 text-lg text-gray-300 max-w-xl">
+              Kunnioitamme menneisyyttä ja rakennamme kestävää tulevaisuutta säilyttämällä Suomen rikasta rakennusperintöä.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-start items-center mt-6">
+              <GradientButton onClick={() => onNavigate('contact')}>
+                Ota yhteyttä
+                <ArrowRight size={20} />
+              </GradientButton>
+              <div className="flex items-center gap-2 px-6 py-4 text-white font-medium">
+                <CheckCircle2 className="text-amber-500" size={20} />
+                <span>Perinteinen osaaminen</span>
+              </div>
+            </div>
           </div>
-          <h1 className="text-3xl md:text-5xl font-bold text-white leading-tight">
-            Laadukasta<br />
-            rakennuskannan<br />
-            entisöintiä
-          </h1>
-          <p className="mt-4 text-lg text-gray-300 max-w-xl">
-            Kunnioitamme menneisyyttä ja rakennamme kestävää tulevaisuutta säilyttämällä Suomen rikasta rakennusperintöä.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-start items-center mt-6">
-            <GradientButton onClick={() => onNavigate('contact')}>
-              Ota yhteyttä
-              <ArrowRight size={20} />
-            </GradientButton>
-            <div className="flex items-center gap-2 px-6 py-4 text-white font-medium">
-              <CheckCircle2 className="text-amber-500" size={20} />
-              <span>Perinteinen osaaminen</span>
+          {/* Right side - Video card */}
+          <div className="flex-1 w-full max-w-xl">
+            <div className="relative w-full aspect-[9/16] md:aspect-video rounded-2xl overflow-hidden border border-amber-700/50 shadow-2xl shadow-amber-900/20 bg-neutral-900">
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full h-full object-cover"
+              >
+                <source src="/videos/hero-video.mov" type="video/quicktime" />
+                <source src="/videos/hero-video.mov" type="video/mp4" />
+              </video>
+              {/* Subtle overlay for better blending */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none"></div>
             </div>
           </div>
         </div>
