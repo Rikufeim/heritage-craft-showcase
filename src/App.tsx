@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import SodergardWhyParallax from './components/SodergardWhyParallax';
-import PalvelummeLaatu from './components/PalvelummeLaatu';
 import {
   Menu,
   X,
@@ -230,6 +229,12 @@ const getRestorationPhotoId = (i: number) => {
  */
 const ServicesList = () => {
   const services = [
+    {
+      title: 'Laatu',
+      icon: CheckCircle2,
+      desc: 'Laatu on yksi perusarvoistamme. Käytämme vain parhaita materiaaleja ja perinteisiä menetelmiä, joilla varmistetaan kestävä lopputulos.',
+      cta: 'Laadun periaatteet',
+    },
     {
       title: 'Restaurointi',
       icon: Hammer,
@@ -496,7 +501,6 @@ const App = () => {
             }
           }} />
           <SodergardWhyParallax />
-          <PalvelummeLaatu />
           <ServicesList />
           <References />
           <ContactSection />
