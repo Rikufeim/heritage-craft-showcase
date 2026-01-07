@@ -118,10 +118,7 @@ export const ProductCard = ({
           alt={product.title}
         />
       </div>
-      <div className="absolute inset-0 h-full w-full opacity-0 group-hover/product:opacity-60 bg-black pointer-events-none rounded-xl transition-opacity duration-300"></div>
-      <h2 className="absolute bottom-4 left-4 opacity-0 group-hover/product:opacity-100 text-white font-bold transition-opacity duration-300">
-        {product.title}
-      </h2>
+      <div className="absolute inset-0 h-full w-full opacity-0 group-hover/product:opacity-20 bg-black pointer-events-none rounded-xl transition-opacity duration-300"></div>
     </motion.div>
   );
 };

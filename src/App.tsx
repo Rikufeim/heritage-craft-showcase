@@ -3,6 +3,7 @@ import SodergardWhyParallax from './components/SodergardWhyParallax';
 import LaatuSection from './components/LaatuSection';
 import RestaurointiSection from './components/RestaurointiSection';
 import KorjauksetSection from './components/KorjauksetSection';
+import ImageLightbox from './components/ImageLightbox';
 import { Menu, X, ArrowRight, ArrowLeft, Phone, Mail, MapPin, CheckCircle2, Hammer, Ruler, Shield, Paintbrush } from 'lucide-react';
 
 // NOTE: Images below are placeholders. In a real project you would replace these
@@ -213,30 +214,50 @@ const getRestorationPhotoId = (i: number) => {
  * Perinteet-osio kuvilla.
  */
 const PerinteetSection = () => {
-  return <div className="flex flex-col md:flex-row-reverse items-center gap-8 md:gap-16 w-full max-w-7xl mx-auto px-6 md:px-12">
-    <div className="flex-1 space-y-6 text-left">
-      <h3 className="text-3xl md:text-4xl font-bold text-white">Perinteet</h3>
-      <p className="text-gray-400 text-lg leading-relaxed">
-        Kunnioitamme perinteitä käyttämällä tekniikoita ja materiaaleja, jotka säilyttävät vanhojen rakennusten hengen modernin työkalun avulla.
-      </p>
-    </div>
-    <div className="flex-1 w-full">
-      <div className="grid grid-cols-2 gap-4">
-        <div className="relative aspect-square overflow-hidden rounded-xl border border-neutral-700">
-          <img src="/palvelut/perinteet-1.jpg" alt="Perinteet 1" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+  const images = [
+    '/palvelut/perinteet-1.jpg',
+    '/palvelut/perinteet-2.jpg',
+    '/palvelut/perinteet-3.jpg',
+    '/palvelut/perinteet-4.jpg'
+  ];
+  const [lightboxImage, setLightboxImage] = useState<string | null>(null);
+
+  return (
+    <>
+      <div className="flex flex-col md:flex-row-reverse items-center gap-8 md:gap-16 w-full max-w-7xl mx-auto px-6 md:px-12">
+        <div className="flex-1 space-y-6 text-left">
+          <h3 className="text-3xl md:text-4xl font-bold text-white">Perinteet</h3>
+          <p className="text-gray-400 text-lg leading-relaxed">
+            Kunnioitamme perinteitä käyttämällä tekniikoita ja materiaaleja, jotka säilyttävät vanhojen rakennusten hengen modernin työkalun avulla.
+          </p>
         </div>
-        <div className="relative aspect-square overflow-hidden rounded-xl border border-neutral-700">
-          <img src="/palvelut/perinteet-2.jpg" alt="Perinteet 2" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
-        </div>
-        <div className="relative aspect-square overflow-hidden rounded-xl border border-neutral-700">
-          <img src="/palvelut/perinteet-3.jpg" alt="Perinteet 3" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
-        </div>
-        <div className="relative aspect-square overflow-hidden rounded-xl border border-neutral-700">
-          <img src="/palvelut/perinteet-4.jpg" alt="Perinteet 4" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+        <div className="flex-1 w-full">
+          <div className="grid grid-cols-2 gap-4">
+            {images.map((src, index) => (
+              <div
+                key={index}
+                onClick={() => setLightboxImage(src)}
+                className="relative aspect-square overflow-hidden rounded-xl border border-neutral-700 cursor-pointer group"
+              >
+                <img
+                  src={src}
+                  alt={`Perinteet ${index + 1}`}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-    </div>
-  </div>;
+      
+      <ImageLightbox
+        isOpen={!!lightboxImage}
+        imageSrc={lightboxImage || ''}
+        imageAlt="Perinteet"
+        onClose={() => setLightboxImage(null)}
+      />
+    </>
+  );
 };
 
 const ServicesList = () => {
@@ -264,45 +285,60 @@ const ServicesList = () => {
  * Meistä-osio kertoo yrityksestä.
  */
 const AboutSection = () => {
-  return <section id="about" className="relative py-24 px-6 bg-black">
-    <div className="max-w-7xl mx-auto">
-      <div className="text-center mb-16">
-        <h2 className="text-4xl md:text-6xl font-black text-amber-500 uppercase tracking-wider">
-          Meistä
-        </h2>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-        <div className="space-y-6">
-          <h3 className="text-2xl md:text-3xl font-bold text-white">
-            Restaurointi Södergård Oy
-          </h3>
-          <p className="text-gray-400 text-lg leading-relaxed">
-            Olemme restauroinnin ammattilaisia, jotka ovat erikoistuneet vanhojen rakennusten kunnostamiseen ja säilyttämiseen. Kunnioitamme perinteitä ja käytämme perinteisiä menetelmiä yhdistettynä moderniin osaamiseen.
-          </p>
-          <p className="text-gray-400 text-lg leading-relaxed">
-            Janne ja Jukka ovat työskennelleet restauroinnin parissa vuosikymmeniä ja tuovat projekteihin syvän ymmärryksen historiallisista rakennustekniikoista ja materiaaleista.
-          </p>
-          <p className="text-gray-400 text-lg leading-relaxed">
-            Toimintamme perustuu laatuun, ammattitaitoon ja asiakkaan tarpeiden kuunteluun. Jokainen projekti on meille ainutlaatuinen.
-          </p>
+  const images = ['/sodergard/1.jpg', '/sodergard/2.jpg', '/sodergard/3.jpg', '/sodergard/5.jpg'];
+  const [lightboxImage, setLightboxImage] = useState<string | null>(null);
+
+  return (
+    <>
+      <section id="about" className="relative py-24 px-6 bg-black">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-6xl font-black text-amber-500 uppercase tracking-wider">
+              Meistä
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <div className="space-y-6">
+              <h3 className="text-2xl md:text-3xl font-bold text-white">
+                Restaurointi Södergård Oy
+              </h3>
+              <p className="text-gray-400 text-lg leading-relaxed">
+                Olemme restauroinnin ammattilaisia, jotka ovat erikoistuneet vanhojen rakennusten kunnostamiseen ja säilyttämiseen. Kunnioitamme perinteitä ja käytämme perinteisiä menetelmiä yhdistettynä moderniin osaamiseen.
+              </p>
+              <p className="text-gray-400 text-lg leading-relaxed">
+                Janne ja Jukka ovat työskennelleet restauroinnin parissa vuosikymmeniä ja tuovat projekteihin syvän ymmärryksen historiallisista rakennustekniikoista ja materiaaleista.
+              </p>
+              <p className="text-gray-400 text-lg leading-relaxed">
+                Toimintamme perustuu laatuun, ammattitaitoon ja asiakkaan tarpeiden kuunteluun. Jokainen projekti on meille ainutlaatuinen.
+              </p>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              {images.map((src, index) => (
+                <div
+                  key={index}
+                  onClick={() => setLightboxImage(src)}
+                  className="relative aspect-square overflow-hidden rounded-xl border border-neutral-700 cursor-pointer group"
+                >
+                  <img
+                    src={src}
+                    alt={`Meistä ${index + 1}`}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
-        <div className="grid grid-cols-2 gap-4">
-          <div className="relative aspect-square overflow-hidden rounded-xl border border-neutral-700">
-            <img src="/sodergard/1.jpg" alt="Restaurointi työ" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
-          </div>
-          <div className="relative aspect-square overflow-hidden rounded-xl border border-neutral-700">
-            <img src="/sodergard/2.jpg" alt="Hirsirakentaminen" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
-          </div>
-          <div className="relative aspect-square overflow-hidden rounded-xl border border-neutral-700">
-            <img src="/sodergard/3.jpg" alt="Puuliitokset" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
-          </div>
-          <div className="relative aspect-square overflow-hidden rounded-xl border border-neutral-700">
-            <img src="/sodergard/5.jpg" alt="Historiallinen rakennus" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>;
+      </section>
+      
+      <ImageLightbox
+        isOpen={!!lightboxImage}
+        imageSrc={lightboxImage || ''}
+        imageAlt="Meistä"
+        onClose={() => setLightboxImage(null)}
+      />
+    </>
+  );
 };
 
 /**
