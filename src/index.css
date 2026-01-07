@@ -53,12 +53,12 @@ All colors MUST be HSL.
     --sidebar-border: 220 13% 91%;
 
     --sidebar-ring: 217.2 91.2% 59.8%;
-    
+
     /* Gold accent colors - Tikkurila H626 */
     --gold: 43 65% 71%;
     --gold-light: 43 65% 78%;
     --gold-dark: 43 55% 60%;
-    
+
     /* Heading color - Tikkurila H626 warm gold */
     --heading: 43 65% 71%;
   }
@@ -99,12 +99,12 @@ All colors MUST be HSL.
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
-    
+
     /* Gold accent colors - Tikkurila H626 */
     --gold: 43 65% 71%;
     --gold-light: 43 65% 78%;
     --gold-dark: 43 55% 60%;
-    
+
     /* Heading color - Tikkurila H626 warm gold */
     --heading: 43 65% 71%;
   }
@@ -125,12 +125,44 @@ All colors MUST be HSL.
   .glow-gold {
     box-shadow: 0 0 20px hsl(38 92% 50% / 0.3), 0 0 40px hsl(38 92% 50% / 0.1);
   }
-  
+
   .glow-gold-sm {
     box-shadow: 0 0 10px hsl(38 92% 50% / 0.2);
   }
-  
+
   .border-gold-gradient {
     border-image: linear-gradient(135deg, hsl(32 81% 43%), hsl(45 93% 58%), hsl(32 81% 43%)) 1;
+  }
+}
+
+/* Custom Scrollbar - Dark Grey */
+::-webkit-scrollbar {
+  width: 14px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 7px;
+  border: 4px solid #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #444;
+}
+
+/* Underline animation */
+@keyframes slideIn {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+
+  to {
+    width: 3rem;
+    opacity: 1;
   }
 }

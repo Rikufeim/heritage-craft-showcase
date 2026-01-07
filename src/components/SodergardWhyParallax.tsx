@@ -5,15 +5,6 @@ import { HeroParallax } from "@/components/ui/hero-parallax";
 export default function SodergardWhyParallax() {
   return (
     <section className="relative bg-black w-full">
-      {/* Header centered over images */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-none">
-        <div className="bg-black/80 backdrop-blur-sm px-8 py-4 rounded-xl">
-          <h2 className="text-3xl md:text-5xl font-playfair font-bold text-heading whitespace-nowrap">
-            Miksi valita Södergård?
-          </h2>
-        </div>
-      </div>
-
       <HeroParallax products={products} />
     </section>
   );
@@ -26,9 +17,9 @@ export const products = [
   { title: "Historiallinen rakennus", thumbnail: "/sodergard/5.jpg" },
   { title: "Korjaustyö", thumbnail: "/sodergard/6.jpg" },
 
-  { title: "Hirsirakentaminen 2", thumbnail: "/sodergard/1.jpg" },
-  { title: "Tiilirakenteet 2", thumbnail: "/sodergard/2.jpg" },
-  { title: "Puuliitokset 2", thumbnail: "/sodergard/3.jpg" },
-  { title: "Historiallinen rakennus 2", thumbnail: "/sodergard/5.jpg" },
-  { title: "Korjaustyö 2", thumbnail: "/palvelut/perinteet-1.jpg" },
+  { title: "Restaurointi telineet", thumbnail: "/palvelut/restaurointi-4.jpg" },
+  { title: "Hirsirakenne", thumbnail: "/palvelut/restaurointi-5.jpg" },
+  { title: "Vanha kaupunki", thumbnail: "/palvelut/restaurointi-6.jpg" },
+  { title: "Restaurointityö", thumbnail: "/palvelut/restaurointi-1.jpg" },
+  { title: "Hirrenveisto", thumbnail: "/palvelut/restaurointi-2.jpg" },
 ];

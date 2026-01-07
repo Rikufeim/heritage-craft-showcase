@@ -1,44 +1,15 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
+import { Menu, X, ArrowRight, Phone, Mail, CheckCircle2 } from 'lucide-react';
+import Introduction from './components/Introduction';
+import ServicesSodergard from './components/ServicesSodergard';
+import ValuesAndPrinciples from './components/ValuesAndPrinciples';
+import SummaryAndCallToAction from './components/SummaryAndCallToAction';
+import GradientButton from './components/ui/GradientButton';
 import SodergardWhyParallax from './components/SodergardWhyParallax';
-import LaatuSection from './components/LaatuSection';
-import RestaurointiSection from './components/RestaurointiSection';
-import KorjauksetSection from './components/KorjauksetSection';
-import ImageLightbox from './components/ImageLightbox';
-import { Menu, X, ArrowRight, ArrowLeft, Phone, Mail, MapPin, CheckCircle2, Hammer, Ruler, Shield, Paintbrush } from 'lucide-react';
+import WhyChooseSodergard from './components/WhyChooseSodergard';
 
-// NOTE: Images below are placeholders. In a real project you would replace these
-// imports with your own assets or remote URLs that reflect the company's
-// restoration work and brand. These unsplash IDs were selected to evoke
-// traditional Finnish wooden architecture and craftsmanship.
+// NOTE: Images below are placeholders.
 const heroBanner = 'https://images.unsplash.com/photo-1528909514045-2fa4ac7a08ba?auto=format&fit=crop&w=1000&q=80';
-const ref1 = 'https://images.unsplash.com/photo-1503694978374-8a2fa686963a?auto=format&fit=crop&w=600&q=80';
-const ref2 = 'https://images.unsplash.com/photo-1455287278107-763a0c633772?auto=format&fit=crop&w=600&q=80';
-const ref3 = 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80';
-const ref4 = 'https://images.unsplash.com/photo-1499952127939-9bbf5af6c51c?auto=format&fit=crop&w=600&q=80';
-
-/**
- * GradientButton
- * A button component styled for a luxurious black and gold palette.
- */
-const GradientButton = ({
-  children,
-  className = '',
-  ...props
-}: {
-  children: React.ReactNode;
-  className?: string;
-  onClick?: () => void;
-}) => {
-  return <button className={`relative group inline-flex items-center justify-center rounded-full min-w-[120px] px-6 py-2.5 text-sm leading-[18px] font-[600] uppercase tracking-wide focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-neutral-400 disabled:pointer-events-none disabled:opacity-50 transition-all duration-300 hover:scale-105 active:scale-95 overflow-hidden ${className}`} {...props}>
-      {/* Base Layer: White background */}
-      <div className="absolute inset-0 bg-white rounded-full z-0 shadow-[0_4px_20px_rgba(0,0,0,0.15)]" />
-      {/* Shine effect on hover */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full z-10" />
-      {/* Border - gold heading color */}
-      <div className="absolute inset-0 rounded-full border-2 border-heading group-hover:border-heading transition-colors duration-300 z-10" />
-      <span className="relative z-20 flex items-center gap-2 text-neutral-900">{children}</span>
-    </button>;
-};
 
 /**
  * FloatingDock
@@ -57,44 +28,56 @@ const FloatingDock = ({
   }, {
     name: 'Palvelut',
     href: '#services',
-    action: () => onNavigate('home')
-  }, {
-    name: 'Meistä',
-    href: '#about',
-    action: () => onNavigate('home')
+    action: () => {
+      const el = document.getElementById('services-start');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
   }, {
     name: 'Yhteystiedot',
     href: '#contact',
-    action: () => onNavigate('home')
+    action: () => {
+      const el = document.getElementById('contact');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
   }];
+
   return <nav className="absolute top-0 left-0 right-0 z-50 px-6 py-4">
-      <div className="flex items-center justify-between w-full max-w-7xl mx-auto">
-        <div onClick={() => onNavigate('home')} className="cursor-pointer select-none">
-          <span className="text-2xl font-bold text-amber-500">Södergård</span>
-        </div>
-        <div className="hidden md:flex items-center gap-6 p-2">
-          {navLinks.map(link => <a key={link.name} href={link.href} onClick={e => {
-          if (link.href === '#hero') {
-            e.preventDefault();
-            link.action();
-          }
-        }} className="text-sm font-semibold text-gray-300 hover:text-amber-400 transition-colors duration-200 px-4 py-1 uppercase tracking-wide">
-              {link.name}
-            </a>)}
-        </div>
-        <button className="md:hidden text-gray-300 hover:text-amber-400" onClick={() => setIsOpen(!isOpen)}>
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+    <div className="flex items-center justify-between w-full max-w-7xl mx-auto">
+      <div onClick={() => onNavigate('home')} className="cursor-pointer select-none">
+        <img src="/sodergard/logo-large.png" alt="Södergård Logo" className="h-20 w-auto object-contain" />
       </div>
-      {isOpen && <div className="absolute top-full mt-2 left-0 right-0 mx-4 border border-neutral-700 rounded-xl p-4 flex flex-col gap-4 shadow-xl md:hidden bg-black/80 backdrop-blur-sm animate-in fade-in slide-in-from-top-2 z-50">
-          {navLinks.map(link => <a key={link.name} href={link.href} onClick={() => {
-        setIsOpen(false);
-        link.action();
-      }} className="text-gray-300 hover:text-amber-400 font-bold py-3 px-4 hover:bg-white/5 rounded-lg transition-all border-b border-white/5 last:border-0">
-              {link.name}
-            </a>)}
-        </div>}
-    </nav>;
+      <div className="hidden md:flex items-center gap-6 p-2">
+        {navLinks.map(link => <a key={link.name} href={link.href} onClick={e => {
+          e.preventDefault();
+          onNavigate(link.href.substring(1));
+        }} className="text-sm font-semibold text-gray-300 hover:text-amber-400 transition-colors duration-200 px-4 py-1 uppercase tracking-wide cursor-pointer">{link.name}</a>)}
+
+        <div className="flex items-center gap-4 ml-2">
+          <a href="https://www.facebook.com/Restaurointisodergardoy/?locale=fi_FI" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-amber-500 transition-colors">
+            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" /></svg>
+          </a>
+          <a href="https://www.instagram.com/restaurointi_sodergard_oy/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-amber-500 transition-colors">
+            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" /></svg>
+          </a>
+        </div>
+      </div>
+      <button className="md:hidden text-gray-400 hover:text-amber-500" onClick={() => setIsOpen(!isOpen)}>
+        {isOpen ? <X size={24} /> : <Menu size={24} />}
+      </button>
+    </div>
+    {
+      isOpen && <div className="absolute top-full mt-2 left-0 right-0 mx-4 border border-neutral-700 rounded-xl p-4 flex flex-col gap-4 shadow-xl md:hidden bg-black/80 backdrop-blur-sm animate-in fade-in slide-in-from-top-2 z-50">
+        {navLinks.map(link => <a key={link.name} href={link.href} onClick={(e) => {
+          e.preventDefault();
+          setIsOpen(false);
+          link.action();
+          if (link.href === '#hero') window.scrollTo({ top: 0, behavior: 'smooth' });
+        }} className="text-gray-300 hover:text-amber-400 font-bold py-3 px-4 hover:bg-white/5 rounded-lg transition-all border-b border-white/5 last:border-0">
+          {link.name}
+        </a>)}
+      </div>
+    }
+  </nav >;
 };
 
 /**
@@ -106,245 +89,56 @@ const Hero = ({
 }: {
   onNavigate: (dest: string) => void;
 }) => {
-  return <div className="bg-black w-full pb-12">
-      <section id="hero" className="min-h-[40rem] rounded-b-[2.5rem] flex flex-col items-start justify-start bg-black antialiased relative overflow-hidden border-b border-neutral-800 shadow-2xl w-full">
-        <FloatingDock onNavigate={onNavigate} />
-        
-        {/* Full-width video background */}
-        <div className="absolute top-20 left-0 right-0 bottom-0 z-0 rounded-t-[2rem] overflow-hidden mx-0">
-          <video autoPlay loop muted playsInline className="w-full h-full object-cover">
-            <source src="/videos/hero-video.mov" type="video/quicktime" />
-            <source src="/videos/hero-video.mov" type="video/mp4" />
-          </video>
-          {/* Multi-layer fade for depth */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black pointer-events-none"></div>
-          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent pointer-events-none"></div>
-        </div>
-        
-        {/* Golden glow effect at top-left corner - reduced */}
-        <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-10" style={{
+  return <div className="bg-black w-full pb-32">
+    <section id="hero" className="min-h-[40rem] rounded-b-[2.5rem] flex flex-col items-start justify-start bg-black antialiased relative overflow-hidden border-b border-neutral-800 shadow-2xl w-full">
+      <FloatingDock onNavigate={onNavigate} />
+
+      {/* Full-width video background */}
+      <div className="absolute top-20 left-0 right-0 bottom-0 z-0 rounded-t-[2rem] overflow-hidden mx-0">
+        <video autoPlay loop muted playsInline className="w-full h-full object-cover">
+          <source src="/videos/hero-video.mov" type="video/quicktime" />
+          <source src="/videos/hero-video.mov" type="video/mp4" />
+        </video>
+        {/* Multi-layer fade for depth */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black pointer-events-none"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent pointer-events-none"></div>
+      </div>
+
+      {/* Golden glow effect at top-left corner - reduced */}
+      <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-10" style={{
         background: 'radial-gradient(circle at 5% 10%, rgba(245, 158, 11, 0.15), transparent 20%)'
       }}></div>
-        {/* Spotlight effect - reduced */}
-        <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-10" style={{
+      {/* Spotlight effect - reduced */}
+      <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-10" style={{
         background: 'radial-gradient(ellipse at 40% 30%, rgba(255, 215, 128, 0.08), transparent 50%)'
       }}></div>
-        {/* Bottom fade - stronger */}
-        <div className="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-black via-black/90 to-transparent z-10 pointer-events-none"></div>
-        
-        <div className="p-6 max-w-7xl mx-auto relative z-20 w-full pt-48 md:pt-56 flex flex-col items-start justify-start">
-          <h1 className="text-3xl md:text-5xl font-playfair font-bold text-heading leading-tight">
-            Perinteinen käsityö.<br />
-            Moderni toteutus.<br />
-            <span className="text-heading">Ajaton lopputulos.</span>
-          </h1>
-          <p className="mt-4 text-lg text-gray-300 max-w-xl">
-            Palvelemme teitä perinne- ja korjausrakentamisen saralla.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-start items-center mt-6">
-            <GradientButton onClick={() => {
-              document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-            }}>
-              Ota yhteyttä
-              <ArrowRight size={20} />
-            </GradientButton>
-            <div className="flex items-center gap-2 px-6 py-4 text-white font-medium">
-              <CheckCircle2 className="text-heading" size={20} />
-              <span>Perinteinen osaaminen</span>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>;
-};
+      {/* Bottom fade - stronger */}
+      <div className="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-black via-black/90 to-transparent z-10 pointer-events-none"></div>
 
-/**
- * ServiceRow
- * Displays a single service with alternating image/text layout.
- */
-const ServiceRow = ({
-  title,
-  description,
-  icon: Icon,
-  index,
-  ctaText
-}: {
-  title: string;
-  description: string;
-  icon: React.ComponentType<{
-    size?: number | string;
-    className?: string;
-  }>;
-  index: number;
-  ctaText: string;
-}) => {
-  return <div className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-8 md:gap-16 w-full max-w-7xl mx-auto px-6 md:px-12`}>
-      <div className="flex-1 space-y-6 text-left">
-        
-        <h3 className="text-3xl md:text-4xl font-bold text-white">{title}</h3>
-        <p className="text-gray-400 text-lg leading-relaxed">{description}</p>
-        <div className="pt-4">
-          <GradientButton>{ctaText}</GradientButton>
-        </div>
-      </div>
-      <div className="flex-1 w-full h-64 md:h-96">
-        <div className="relative w-full h-full rounded-2xl overflow-hidden border border-neutral-700 shadow-xl bg-neutral-900">
-          {/* Use dynamic unsplash images that evoke restoration */}
-          <img src={`https://images.unsplash.com/photo-${getRestorationPhotoId(index)}?q=80&w=1000&auto=format&fit=crop`} alt={title} className="w-full h-full object-cover hover:scale-105 transition-transform duration-700 opacity-80 hover:opacity-100" />
-        </div>
-      </div>
-    </div>;
-};
-const getRestorationPhotoId = (i: number) => {
-  const ids = ['1506976785307-8732e854ad35',
-  // traditional wooden house
-  '1529692236671-f1bc237f7274',
-  // old log house wall
-  '1559139543-646f9f9e24a0',
-  // carpentry tools
-  '1505842465776-3d99d35aef68' // stone foundation
-  ];
-  return ids[i % ids.length];
-};
-
-/**
- * ServicesList
- * Lists the core values/services offered by the company.
- */
-/**
- * PerinteetSection
- * Perinteet-osio kuvilla.
- */
-const PerinteetSection = () => {
-  const images = [
-    '/palvelut/perinteet-1.jpg',
-    '/palvelut/perinteet-2.jpg',
-    '/palvelut/perinteet-3.jpg',
-    '/palvelut/perinteet-4.jpg'
-  ];
-  const [lightboxImage, setLightboxImage] = useState<string | null>(null);
-
-  return (
-    <>
-      <div className="flex flex-col md:flex-row-reverse items-center gap-8 md:gap-16 w-full max-w-7xl mx-auto px-6 md:px-12">
-        <div className="flex-1 space-y-6 text-left">
-          <h3 className="text-3xl md:text-4xl font-playfair font-bold text-heading">Perinteet</h3>
-          <p className="text-gray-400 text-lg leading-relaxed">
-            Kunnioitamme perinteitä käyttämällä tekniikoita ja materiaaleja, jotka säilyttävät vanhojen rakennusten hengen modernin työkalun avulla.
-          </p>
-          <GradientButton onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
+      <div className="p-6 max-w-7xl mx-auto relative z-20 w-full pt-48 md:pt-56 flex flex-col items-start justify-start">
+        <h1 className="text-3xl md:text-5xl font-playfair font-bold text-heading leading-tight">
+          Perinteinen käsityö.<br />
+          Moderni toteutus.<br />
+          <span className="text-heading">Ajaton lopputulos.</span>
+        </h1>
+        <p className="mt-4 text-lg text-gray-300 max-w-xl">
+          Palvelemme teitä perinne- ja korjausrakentamisen saralla.
+        </p>
+        <div className="flex flex-col sm:flex-row gap-4 justify-start items-center mt-6">
+          <GradientButton onClick={() => {
+            document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+          }}>
             Ota yhteyttä
             <ArrowRight size={20} />
           </GradientButton>
-        </div>
-        <div className="flex-1 w-full">
-          <div className="grid grid-cols-2 gap-4">
-            {images.map((src, index) => (
-              <div
-                key={index}
-                onClick={() => setLightboxImage(src)}
-                className="relative aspect-square overflow-hidden rounded-xl border border-neutral-700 cursor-pointer group"
-              >
-                <img
-                  src={src}
-                  alt={`Perinteet ${index + 1}`}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-            ))}
+          <div className="flex items-center gap-2 px-6 py-4 text-white font-medium">
+            <CheckCircle2 className="text-heading" size={20} />
+            <span>Perinteinen osaaminen</span>
           </div>
         </div>
       </div>
-      
-      <ImageLightbox
-        isOpen={!!lightboxImage}
-        imageSrc={lightboxImage || ''}
-        imageAlt="Perinteet"
-        onClose={() => setLightboxImage(null)}
-      />
-    </>
-  );
-};
-
-const ServicesList = () => {
-  return <section id="services" className="relative py-24 overflow-hidden bg-black w-full">
-      <div className="absolute inset-0 z-0" style={{
-      background: 'radial-gradient(circle at 30% 70%, #0a0a0a 0%, transparent 45%), radial-gradient(circle at 70% 30%, #111 0%, transparent 45%)',
-      width: '100%',
-      height: '100%'
-    }} />
-      <div className="space-y-32 relative z-10">
-        {/* Laatu section with 2x2 grid */}
-        <LaatuSection />
-        {/* Restaurointi section with images */}
-        <RestaurointiSection />
-        {/* Korjaukset section with images */}
-        <KorjauksetSection />
-        {/* Perinteet section with images */}
-        <PerinteetSection />
-      </div>
-    </section>;
-};
-
-/**
- * AboutSection
- * Meistä-osio kertoo yrityksestä.
- */
-const AboutSection = () => {
-  const images = ['/sodergard/1.jpg', '/sodergard/2.jpg', '/sodergard/3.jpg', '/sodergard/5.jpg'];
-  const [lightboxImage, setLightboxImage] = useState<string | null>(null);
-
-  return (
-    <>
-      <section id="about" className="relative py-24 px-6 bg-black">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-6xl font-playfair font-black text-heading uppercase tracking-wider">
-              Meistä
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-            <div className="space-y-6">
-              <h3 className="text-2xl md:text-3xl font-playfair font-bold text-heading">
-                Restaurointi Södergård Oy
-              </h3>
-              <p className="text-gray-400 text-lg leading-relaxed">
-                Olemme restauroinnin ammattilaisia, jotka ovat erikoistuneet vanhojen rakennusten kunnostamiseen ja säilyttämiseen. Kunnioitamme perinteitä ja käytämme perinteisiä menetelmiä yhdistettynä moderniin osaamiseen.
-              </p>
-              <p className="text-gray-400 text-lg leading-relaxed">
-                Janne ja Jukka ovat työskennelleet restauroinnin parissa vuosikymmeniä ja tuovat projekteihin syvän ymmärryksen historiallisista rakennustekniikoista ja materiaaleista.
-              </p>
-              <p className="text-gray-400 text-lg leading-relaxed">
-                Toimintamme perustuu laatuun, ammattitaitoon ja asiakkaan tarpeiden kuunteluun. Jokainen projekti on meille ainutlaatuinen.
-              </p>
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              {images.map((src, index) => (
-                <div
-                  key={index}
-                  onClick={() => setLightboxImage(src)}
-                  className="relative aspect-square overflow-hidden rounded-xl border border-neutral-700 cursor-pointer group"
-                >
-                  <img
-                    src={src}
-                    alt={`Meistä ${index + 1}`}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-      
-      <ImageLightbox
-        isOpen={!!lightboxImage}
-        imageSrc={lightboxImage || ''}
-        imageAlt="Meistä"
-        onClose={() => setLightboxImage(null)}
-      />
-    </>
-  );
+    </section>
+  </div>;
 };
 
 /**
@@ -354,25 +148,25 @@ const AboutSection = () => {
 const FloatingContactButton = () => {
   const [isOpen, setIsOpen] = useState(false);
   return <div className="fixed bottom-6 right-6 z-50">
-      {/* Contact popup */}
-      {isOpen && <div className="absolute bottom-16 right-0 mb-2 bg-black border-2 border-heading rounded-2xl p-4 shadow-2xl shadow-heading/20 min-w-[220px] animate-in fade-in slide-in-from-bottom-2 duration-200">
-          <div className="space-y-3">
-            <a href="tel:+358449700432" className="flex items-center gap-3 text-white hover:text-heading transition-colors font-medium p-2 hover:bg-heading/10 rounded-lg">
-              <Phone size={20} className="text-heading" />
-              <span>+358 44 970 0432</span>
-            </a>
-            <a href="mailto:info@srgd.fi" className="flex items-center gap-3 text-white hover:text-heading transition-colors font-medium p-2 hover:bg-heading/10 rounded-lg">
-              <Mail size={20} className="text-heading" />
-              <span>info@srgd.fi</span>
-            </a>
-          </div>
-        </div>}
-      
-      {/* Phone button */}
-      <button onClick={() => setIsOpen(!isOpen)} className="w-14 h-14 bg-black border-2 border-heading rounded-full flex items-center justify-center shadow-xl shadow-heading/20 hover:scale-110 transition-all duration-300 group">
-        {isOpen ? <X size={24} className="text-heading" /> : <Phone size={24} className="text-heading" />}
-      </button>
-    </div>;
+    {/* Contact popup */}
+    {isOpen && <div className="absolute bottom-16 right-0 mb-2 bg-black border-2 border-heading rounded-2xl p-4 shadow-2xl shadow-heading/20 min-w-[220px] animate-in fade-in slide-in-from-bottom-2 duration-200">
+      <div className="space-y-3">
+        <a href="tel:+358449700432" className="flex items-center gap-3 text-white hover:text-heading transition-colors font-medium p-2 hover:bg-heading/10 rounded-lg">
+          <Phone size={20} className="text-heading" />
+          <span>+358 44 970 0432</span>
+        </a>
+        <a href="mailto:info@srgd.fi" className="flex items-center gap-3 text-white hover:text-heading transition-colors font-medium p-2 hover:bg-heading/10 rounded-lg">
+          <Mail size={20} className="text-heading" />
+          <span>info@srgd.fi</span>
+        </a>
+      </div>
+    </div>}
+
+    {/* Phone button */}
+    <button onClick={() => setIsOpen(!isOpen)} className="w-14 h-14 bg-black border-2 border-heading rounded-full flex items-center justify-center shadow-xl shadow-heading/20 hover:scale-110 transition-all duration-300 group">
+      {isOpen ? <X size={24} className="text-heading" /> : <Phone size={24} className="text-heading" />}
+    </button>
+  </div>;
 };
 
 /**
@@ -380,73 +174,78 @@ const FloatingContactButton = () => {
  * Displays company and billing information.
  */
 const ContactSection = () => {
-  return <section id="contact" className="relative py-24 px-6">
-      <div className="relative z-10 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-          {/* Left - Company Info */}
-          <div className="space-y-8">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-playfair font-black text-heading uppercase tracking-tight mb-8">
-                Restaurointi Södergård Oy
-              </h2>
-              <div className="space-y-4 text-gray-300">
-                <p className="text-gray-400">Y-tunnus: 2569281-6</p>
-                <div className="space-y-1">
-                  <p className="font-medium text-white">Ahlaistentie 648</p>
-                  <p>29700 Ahlainen</p>
-                </div>
-                <div className="pt-4 space-y-2">
-                  <p className="font-bold text-white">Janne & Jukka</p>
-                  <a href="tel:+358449700432" className="flex items-center gap-2 text-amber-400 hover:text-amber-300 transition-colors font-medium">
-                    <Phone size={18} />
-                    +358 44 970 0432
-                  </a>
-                  <a href="mailto:info@srgd.fi" className="flex items-center gap-2 text-amber-400 hover:text-amber-300 transition-colors font-medium">
-                    <Mail size={18} />
-                    info@srgd.fi
-                  </a>
-                </div>
+  return <section id="contact" className="relative py-32 px-6 md:pb-64">
+    <div className="relative z-10 max-w-7xl mx-auto">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+        {/* Left - Company Info */}
+        <div className="space-y-8">
+          <div>
+            <h2 className="text-3xl md:text-4xl font-playfair font-black text-heading uppercase tracking-tight mb-8">
+              Restaurointi Södergård Oy
+            </h2>
+            <div className="space-y-4 text-gray-300">
+              <p className="text-gray-400">Y-tunnus: 2569281-6</p>
+              <div className="space-y-1">
+                <p className="font-medium text-white">Ahlaistentie 648</p>
+                <p>29700 Ahlainen</p>
+              </div>
+              <div className="pt-4 space-y-2">
+                <p className="font-bold text-white">Janne & Jukka</p>
+                <a href="tel:+358449700432" className="flex items-center gap-2 text-amber-400 hover:text-amber-300 transition-colors font-medium">
+                  <Phone size={18} />
+                  +358 44 970 0432
+                </a>
+                <a href="mailto:info@srgd.fi" className="flex items-center gap-2 text-amber-400 hover:text-amber-300 transition-colors font-medium">
+                  <Mail size={18} />
+                  info@srgd.fi
+                </a>
               </div>
             </div>
-            {/* Embedded map */}
-            <div className="rounded-2xl overflow-hidden shadow-xl border border-neutral-700">
-              <iframe src="https://maps.google.com/maps?q=Ahlaistentie%20648,%2029700%20Ahlainen&t=&z=14&ie=UTF8&iwloc=&output=embed" width="100%" height="250" style={{
+          </div>
+          {/* Embedded map */}
+          <div className="rounded-2xl overflow-hidden shadow-xl border border-neutral-700">
+            <iframe src="https://maps.google.com/maps?q=Ahlaistentie%20648,%2029700%20Ahlainen&t=&z=14&ie=UTF8&iwloc=&output=embed" width="100%" height="250" style={{
               border: 0
             }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="Restaurointi Södergård Oy sijainti" className="grayscale hover:grayscale-0 transition-all duration-500" />
-            </div>
           </div>
-          {/* Right - Billing Info */}
-          <div className="space-y-8">
-            <h3 className="text-2xl font-playfair font-bold text-heading mb-6">Laskutustiedot</h3>
-            <div className="bg-neutral-900 border border-neutral-700 rounded-2xl p-8 space-y-6">
-              <div className="space-y-4">
-                <div>
-                  <p className="text-gray-400 text-sm font-medium mb-1">Yritys</p>
-                  <p className="text-white font-bold text-lg">Restaurointi Södergård Oy</p>
+        </div>
+
+        {/* Right - Billing Info */}
+        <div className="space-y-8">
+          <h3 className="text-3xl md:text-4xl font-playfair font-black text-heading uppercase tracking-tight mb-8">
+            Laskutustiedot
+          </h3>
+          <div className="space-y-6 text-lg">
+            <div className="space-y-4">
+              <div className="border-b border-neutral-800 pb-4">
+                <p className="text-gray-500 text-sm uppercase tracking-wider mb-1">Yritys</p>
+                <p className="text-white font-bold text-xl">Restaurointi Södergård Oy</p>
+              </div>
+              <div className="border-b border-neutral-800 pb-4">
+                <p className="text-gray-500 text-sm uppercase tracking-wider mb-1">Y-tunnus</p>
+                <p className="text-white font-medium">2569281-6</p>
+              </div>
+              <div className="border-b border-neutral-800 pb-4">
+                <p className="text-gray-500 text-sm uppercase tracking-wider mb-1">Osoite</p>
+                <div className="text-white font-medium">
+                  <p>Ahlaistentie 648</p>
+                  <p>29700 Ahlainen</p>
                 </div>
-                <div>
-                  <p className="text-gray-400 text-sm font-medium mb-1">Y-tunnus</p>
-                  <p className="text-white font-medium">2569281-6</p>
-                </div>
-                <div>
-                  <p className="text-gray-400 text-sm font-medium mb-1">Osoite</p>
-                  <p className="text-white font-medium">Ahlaistentie 648</p>
-                  <p className="text-white font-medium">29700 Ahlainen</p>
-                </div>
-                <div>
-                  <p className="text-gray-400 text-sm font-medium mb-1">Verkkolaskuosoite</p>
-                  <p className="text-white font-medium">003725692816</p>
-                </div>
-                <div>
-                  <p className="text-gray-400 text-sm font-medium mb-1">Operaattori</p>
-                  <p className="text-white font-medium">Apix Messaging Oy (003723327487)</p>
-                </div>
+              </div>
+              <div className="border-b border-neutral-800 pb-4">
+                <p className="text-gray-500 text-sm uppercase tracking-wider mb-1">Verkkolaskuosoite</p>
+                <p className="text-white font-medium">003725692816</p>
+              </div>
+              <div className="pb-4">
+                <p className="text-gray-500 text-sm uppercase tracking-wider mb-1">Operaattori</p>
+                <p className="text-white font-medium">Apix Messaging Oy (003723327487)</p>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section>;
+    </div>
+  </section>;
 };
 
 /**
@@ -455,18 +254,23 @@ const ContactSection = () => {
  */
 const Footer = () => {
   return <div className="bg-black w-full px-2 pb-2">
-      <footer id="footer" className="relative py-12 px-6 overflow-hidden bg-black rounded-[2.5rem] border border-neutral-800">
-        <div className="relative z-10 max-w-7xl mx-auto">
-          <div className="w-full flex flex-col md:flex-row justify-between items-center text-gray-500 text-sm gap-4">
-            <p>&copy; {new Date().getFullYear()} Restaurointi Södergård Oy. Kaikki oikeudet pidätetään.</p>
-            <div className="flex gap-6">
-              <a href="#" className="hover:text-amber-400 transition-colors">Tietosuoja</a>
-              <a href="#" className="hover:text-amber-400 transition-colors">Toimitusehdot</a>
-            </div>
-          </div>
+    <footer id="footer" className="relative py-12 px-6 overflow-hidden bg-black rounded-[2.5rem] border border-neutral-800">
+      <div className="max-w-7xl mx-auto text-center space-y-6">
+        <div className="flex justify-center gap-6 mb-4">
+          <a href="https://www.facebook.com/Restaurointisodergardoy/?locale=fi_FI" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-amber-500 transition-colors">
+            <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" /></svg>
+          </a>
+          <a href="https://www.instagram.com/restaurointi_sodergard_oy/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-amber-500 transition-colors">
+            <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" /></svg>
+          </a>
         </div>
-      </footer>
-    </div>;
+        <p className="text-gray-500 text-sm">© {new Date().getFullYear()} Restaurointi Södergård Oy. Kaikki oikeudet pidätetään.</p>
+        <p className="text-gray-600 text-xs">
+          <a href="https://feim.fi" target="_blank" rel="noopener noreferrer" className="hover:text-amber-400 transition-colors">Ajattelevat sivut By Feim</a>
+        </p>
+      </div>
+    </footer>
+  </div>;
 };
 
 /**
@@ -480,9 +284,9 @@ const App = () => {
     window.scrollTo(0, 0);
   };
   return <div className="bg-black min-h-screen font-sans antialiased selection:bg-amber-900 selection:text-black text-white">
-      <FloatingContactButton />
-      {view === 'home' ? <div className="flex flex-col">
-          <Hero onNavigate={dest => {
+    <FloatingContactButton />
+    {view === 'home' ? <div className="flex flex-col">
+      <Hero onNavigate={dest => {
         if (dest === 'contact') {
           document.getElementById('contact')?.scrollIntoView({
             behavior: 'smooth'
@@ -491,12 +295,25 @@ const App = () => {
           handleNavigateHome();
         }
       }} />
-          <SodergardWhyParallax />
-          <ServicesList />
-          <AboutSection />
-          <ContactSection />
-          <Footer />
-        </div> : null}
-    </div>;
+
+      <Introduction />
+
+      {/* Restoring the Parallax visual section here as a bridge */}
+      <SodergardWhyParallax />
+
+      <WhyChooseSodergard />
+
+      <div id="services-start">
+        <ServicesSodergard />
+      </div>
+
+      <ValuesAndPrinciples />
+
+      <SummaryAndCallToAction />
+
+      <ContactSection />
+      <Footer />
+    </div> : null}
+  </div>;
 };
 export default App;
