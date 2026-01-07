@@ -1,142 +1,113 @@
 import React, { useState, useEffect, useRef } from 'react';
 import SodergardWhyParallax from './components/SodergardWhyParallax';
 import LaatuSection from './components/LaatuSection';
-import {
-  Menu,
-  X,
-  ArrowRight,
-  ArrowLeft,
-  Phone,
-  Mail,
-  MapPin,
-  CheckCircle2,
-  Hammer,
-  Ruler,
-  Shield,
-  Paintbrush,
-} from 'lucide-react';
+import { Menu, X, ArrowRight, ArrowLeft, Phone, Mail, MapPin, CheckCircle2, Hammer, Ruler, Shield, Paintbrush } from 'lucide-react';
 
 // NOTE: Images below are placeholders. In a real project you would replace these
 // imports with your own assets or remote URLs that reflect the company's
 // restoration work and brand. These unsplash IDs were selected to evoke
 // traditional Finnish wooden architecture and craftsmanship.
-const heroBanner =
-  'https://images.unsplash.com/photo-1528909514045-2fa4ac7a08ba?auto=format&fit=crop&w=1000&q=80';
-const ref1 =
-  'https://images.unsplash.com/photo-1503694978374-8a2fa686963a?auto=format&fit=crop&w=600&q=80';
-const ref2 =
-  'https://images.unsplash.com/photo-1455287278107-763a0c633772?auto=format&fit=crop&w=600&q=80';
-const ref3 =
-  'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80';
-const ref4 =
-  'https://images.unsplash.com/photo-1499952127939-9bbf5af6c51c?auto=format&fit=crop&w=600&q=80';
+const heroBanner = 'https://images.unsplash.com/photo-1528909514045-2fa4ac7a08ba?auto=format&fit=crop&w=1000&q=80';
+const ref1 = 'https://images.unsplash.com/photo-1503694978374-8a2fa686963a?auto=format&fit=crop&w=600&q=80';
+const ref2 = 'https://images.unsplash.com/photo-1455287278107-763a0c633772?auto=format&fit=crop&w=600&q=80';
+const ref3 = 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80';
+const ref4 = 'https://images.unsplash.com/photo-1499952127939-9bbf5af6c51c?auto=format&fit=crop&w=600&q=80';
 
 /**
  * GradientButton
  * A button component styled for a luxurious black and gold palette.
  */
-const GradientButton = ({ children, className = '', ...props }: { children: React.ReactNode; className?: string; onClick?: () => void }) => {
-  return (
-    <button
-      className={`relative group inline-flex items-center justify-center rounded-[4px] min-w-[132px] px-9 py-4 text-base leading-[19px] font-[600] uppercase tracking-wide focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-amber-400 disabled:pointer-events-none disabled:opacity-50 transition-transform duration-300 hover:scale-105 active:scale-95 overflow-hidden shadow-lg ${className}`}
-      {...props}
-    >
+const GradientButton = ({
+  children,
+  className = '',
+  ...props
+}: {
+  children: React.ReactNode;
+  className?: string;
+  onClick?: () => void;
+}) => {
+  return <button className={`relative group inline-flex items-center justify-center rounded-[4px] min-w-[132px] px-9 py-4 text-base leading-[19px] font-[600] uppercase tracking-wide focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-amber-400 disabled:pointer-events-none disabled:opacity-50 transition-transform duration-300 hover:scale-105 active:scale-95 overflow-hidden shadow-lg ${className}`} {...props}>
       {/* Base Layer: Black background */}
       <div className="absolute inset-0 bg-black border border-amber-700 rounded-[4px] z-0" />
       {/* Hover Layer: Gold gradient */}
-      <div
-        className="absolute inset-0 bg-gradient-to-r from-amber-700 via-amber-500 to-amber-700 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"
-      />
+      <div className="absolute inset-0 bg-gradient-to-r from-amber-700 via-amber-500 to-amber-700 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
       <span className="relative z-20 flex items-center gap-2 text-white">{children}</span>
-    </button>
-  );
+    </button>;
 };
 
 /**
  * FloatingDock
  * Responsive navigation bar for the site. Uses black/gold palette.
  */
-const FloatingDock = ({ onNavigate }: { onNavigate: (dest: string) => void }) => {
+const FloatingDock = ({
+  onNavigate
+}: {
+  onNavigate: (dest: string) => void;
+}) => {
   const [isOpen, setIsOpen] = useState(false);
-  const navLinks = [
-    { name: 'Etusivu', href: '#hero', action: () => onNavigate('home') },
-    { name: 'Palvelut', href: '#services', action: () => onNavigate('home') },
-    { name: 'Referenssit', href: '#references', action: () => onNavigate('home') },
-    { name: 'Yhteystiedot', href: '#contact', action: () => onNavigate('home') },
-  ];
-  return (
-    <nav className="absolute top-0 left-0 right-0 z-50 px-6 py-4">
+  const navLinks = [{
+    name: 'Etusivu',
+    href: '#hero',
+    action: () => onNavigate('home')
+  }, {
+    name: 'Palvelut',
+    href: '#services',
+    action: () => onNavigate('home')
+  }, {
+    name: 'Referenssit',
+    href: '#references',
+    action: () => onNavigate('home')
+  }, {
+    name: 'Yhteystiedot',
+    href: '#contact',
+    action: () => onNavigate('home')
+  }];
+  return <nav className="absolute top-0 left-0 right-0 z-50 px-6 py-4">
       <div className="flex items-center justify-between w-full max-w-7xl mx-auto">
         <div onClick={() => onNavigate('home')} className="cursor-pointer select-none">
           <span className="text-2xl font-bold text-amber-500">Södergård</span>
         </div>
         <div className="hidden md:flex items-center gap-6 p-2">
-          {navLinks.map(link => (
-            <a
-              key={link.name}
-              href={link.href}
-              onClick={e => {
-                if (link.href === '#hero') {
-                  e.preventDefault();
-                  link.action();
-                }
-              }}
-              className="text-sm font-semibold text-gray-300 hover:text-amber-400 transition-colors duration-200 px-4 py-1 uppercase tracking-wide"
-            >
+          {navLinks.map(link => <a key={link.name} href={link.href} onClick={e => {
+          if (link.href === '#hero') {
+            e.preventDefault();
+            link.action();
+          }
+        }} className="text-sm font-semibold text-gray-300 hover:text-amber-400 transition-colors duration-200 px-4 py-1 uppercase tracking-wide">
               {link.name}
-            </a>
-          ))}
+            </a>)}
         </div>
-        <button
-          className="md:hidden text-gray-300 hover:text-amber-400"
-          onClick={() => setIsOpen(!isOpen)}
-        >
+        <button className="md:hidden text-gray-300 hover:text-amber-400" onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
-      {isOpen && (
-        <div className="absolute top-full mt-2 left-0 right-0 mx-4 border border-neutral-700 rounded-xl p-4 flex flex-col gap-4 shadow-xl md:hidden bg-black/80 backdrop-blur-sm animate-in fade-in slide-in-from-top-2 z-50">
-          {navLinks.map(link => (
-            <a
-              key={link.name}
-              href={link.href}
-              onClick={() => {
-                setIsOpen(false);
-                link.action();
-              }}
-              className="text-gray-300 hover:text-amber-400 font-bold py-3 px-4 hover:bg-white/5 rounded-lg transition-all border-b border-white/5 last:border-0"
-            >
+      {isOpen && <div className="absolute top-full mt-2 left-0 right-0 mx-4 border border-neutral-700 rounded-xl p-4 flex flex-col gap-4 shadow-xl md:hidden bg-black/80 backdrop-blur-sm animate-in fade-in slide-in-from-top-2 z-50">
+          {navLinks.map(link => <a key={link.name} href={link.href} onClick={() => {
+        setIsOpen(false);
+        link.action();
+      }} className="text-gray-300 hover:text-amber-400 font-bold py-3 px-4 hover:bg-white/5 rounded-lg transition-all border-b border-white/5 last:border-0">
               {link.name}
-            </a>
-          ))}
-        </div>
-      )}
-    </nav>
-  );
+            </a>)}
+        </div>}
+    </nav>;
 };
 
 /**
  * Hero
  * The introductory hero section for the landing page.
  */
-const Hero = ({ onNavigate }: { onNavigate: (dest: string) => void }) => {
-  return (
-    <div className="bg-black w-full pb-12">
-      <section
-        id="hero"
-        className="min-h-[40rem] rounded-b-[2.5rem] flex flex-col items-start justify-start bg-black antialiased relative overflow-hidden border-b border-neutral-800 shadow-2xl w-full"
-      >
+const Hero = ({
+  onNavigate
+}: {
+  onNavigate: (dest: string) => void;
+}) => {
+  return <div className="bg-black w-full pb-12">
+      <section id="hero" className="min-h-[40rem] rounded-b-[2.5rem] flex flex-col items-start justify-start bg-black antialiased relative overflow-hidden border-b border-neutral-800 shadow-2xl w-full">
         <FloatingDock onNavigate={onNavigate} />
         
         {/* Full-width video background - positioned below nav */}
         <div className="absolute top-20 left-6 right-6 bottom-0 z-0 rounded-t-[2rem] overflow-hidden">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full h-full object-cover"
-          >
+          <video autoPlay loop muted playsInline className="w-full h-full object-cover">
             <source src="/videos/hero-video.mov" type="video/quicktime" />
             <source src="/videos/hero-video.mov" type="video/mp4" />
           </video>
@@ -146,9 +117,13 @@ const Hero = ({ onNavigate }: { onNavigate: (dest: string) => void }) => {
         </div>
         
         {/* Golden glow effect at top-left corner */}
-        <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-10" style={{ background: 'radial-gradient(circle at 5% 10%, rgba(245, 158, 11, 0.35), transparent 25%)' }}></div>
+        <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-10" style={{
+        background: 'radial-gradient(circle at 5% 10%, rgba(245, 158, 11, 0.35), transparent 25%)'
+      }}></div>
         {/* Spotlight effect */}
-        <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-10" style={{ background: 'radial-gradient(ellipse at 40% 30%, rgba(255, 215, 128, 0.15), transparent 60%)' }}></div>
+        <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-10" style={{
+        background: 'radial-gradient(ellipse at 40% 30%, rgba(255, 215, 128, 0.15), transparent 60%)'
+      }}></div>
         {/* Bottom fade - stronger */}
         <div className="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-black via-black/90 to-transparent z-10 pointer-events-none"></div>
         
@@ -176,23 +151,32 @@ const Hero = ({ onNavigate }: { onNavigate: (dest: string) => void }) => {
           </div>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 };
 
 /**
  * ServiceRow
  * Displays a single service with alternating image/text layout.
  */
-const ServiceRow = ({ title, description, icon: Icon, index, ctaText }: { title: string; description: string; icon: React.ComponentType<{ size?: number | string; className?: string }>; index: number; ctaText: string }) => {
-  return (
-    <div
-      className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-8 md:gap-16 w-full max-w-7xl mx-auto px-6 md:px-12`}
-    >
+const ServiceRow = ({
+  title,
+  description,
+  icon: Icon,
+  index,
+  ctaText
+}: {
+  title: string;
+  description: string;
+  icon: React.ComponentType<{
+    size?: number | string;
+    className?: string;
+  }>;
+  index: number;
+  ctaText: string;
+}) => {
+  return <div className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-8 md:gap-16 w-full max-w-7xl mx-auto px-6 md:px-12`}>
       <div className="flex-1 space-y-6 text-left">
-        <div className="inline-flex items-center justify-center p-3 bg-amber-900/20 rounded-2xl mb-2 border border-amber-800 shadow-sm">
-          <Icon size={32} className="text-amber-500" />
-        </div>
+        
         <h3 className="text-3xl md:text-4xl font-bold text-white">{title}</h3>
         <p className="text-gray-400 text-lg leading-relaxed">{description}</p>
         <div className="pt-4">
@@ -202,23 +186,19 @@ const ServiceRow = ({ title, description, icon: Icon, index, ctaText }: { title:
       <div className="flex-1 w-full h-64 md:h-96">
         <div className="relative w-full h-full rounded-2xl overflow-hidden border border-neutral-700 shadow-xl bg-neutral-900">
           {/* Use dynamic unsplash images that evoke restoration */}
-          <img
-            src={`https://images.unsplash.com/photo-${getRestorationPhotoId(index)}?q=80&w=1000&auto=format&fit=crop`}
-            alt={title}
-            className="w-full h-full object-cover hover:scale-105 transition-transform duration-700 opacity-80 hover:opacity-100"
-          />
+          <img src={`https://images.unsplash.com/photo-${getRestorationPhotoId(index)}?q=80&w=1000&auto=format&fit=crop`} alt={title} className="w-full h-full object-cover hover:scale-105 transition-transform duration-700 opacity-80 hover:opacity-100" />
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 const getRestorationPhotoId = (i: number) => {
-  const ids = [
-    '1506976785307-8732e854ad35', // traditional wooden house
-    '1529692236671-f1bc237f7274', // old log house wall
-    '1559139543-646f9f9e24a0', // carpentry tools
-    '1505842465776-3d99d35aef68', // stone foundation
+  const ids = ['1506976785307-8732e854ad35',
+  // traditional wooden house
+  '1529692236671-f1bc237f7274',
+  // old log house wall
+  '1559139543-646f9f9e24a0',
+  // carpentry tools
+  '1505842465776-3d99d35aef68' // stone foundation
   ];
   return ids[i % ids.length];
 };
@@ -228,38 +208,34 @@ const getRestorationPhotoId = (i: number) => {
  * Lists the core values/services offered by the company.
  */
 const ServicesList = () => {
-  const services = [
-    {
-      title: 'Restaurointi',
-      icon: Hammer,
-      desc: 'Olemme erikoistuneet puurakennuksien ja perinteisten kohteiden restaurointiin ja entisöintiin.',
-      cta: 'Lue lisää',
-    },
-    {
-      title: 'Korjaukset',
-      icon: Ruler,
-      desc: 'Korjausrakentamisessa erikoisosaamistamme ovat haastavat kohteet, kuten hirsirakennusten nosto ja siirto sekä rakenteiden vahvistus.',
-      cta: 'Tutustu projekteihin',
-    },
-    {
-      title: 'Perinteet',
-      icon: Shield,
-      desc: 'Kunnioitamme perinteitä käyttämällä tekniikoita ja materiaaleja, jotka säilyttävät vanhojen rakennusten hengen modernin työkalun avulla.',
-      cta: 'Lue tarinamme',
-    },
-  ];
-  return (
-    <section id="services" className="relative py-24 overflow-hidden bg-black w-full">
-      <div className="absolute inset-0 z-0" style={{ background: 'radial-gradient(circle at 30% 70%, #0a0a0a 0%, transparent 45%), radial-gradient(circle at 70% 30%, #111 0%, transparent 45%)', width: '100%', height: '100%' }} />
+  const services = [{
+    title: 'Restaurointi',
+    icon: Hammer,
+    desc: 'Olemme erikoistuneet puurakennuksien ja perinteisten kohteiden restaurointiin ja entisöintiin.',
+    cta: 'Lue lisää'
+  }, {
+    title: 'Korjaukset',
+    icon: Ruler,
+    desc: 'Korjausrakentamisessa erikoisosaamistamme ovat haastavat kohteet, kuten hirsirakennusten nosto ja siirto sekä rakenteiden vahvistus.',
+    cta: 'Tutustu projekteihin'
+  }, {
+    title: 'Perinteet',
+    icon: Shield,
+    desc: 'Kunnioitamme perinteitä käyttämällä tekniikoita ja materiaaleja, jotka säilyttävät vanhojen rakennusten hengen modernin työkalun avulla.',
+    cta: 'Lue tarinamme'
+  }];
+  return <section id="services" className="relative py-24 overflow-hidden bg-black w-full">
+      <div className="absolute inset-0 z-0" style={{
+      background: 'radial-gradient(circle at 30% 70%, #0a0a0a 0%, transparent 45%), radial-gradient(circle at 70% 30%, #111 0%, transparent 45%)',
+      width: '100%',
+      height: '100%'
+    }} />
       <div className="space-y-32 relative z-10">
         {/* Laatu section with 2x2 grid */}
         <LaatuSection />
-        {services.map((s, i) => (
-          <ServiceRow key={i} index={i + 1} title={s.title} icon={s.icon} description={s.desc} ctaText={s.cta} />
-        ))}
+        {services.map((s, i) => <ServiceRow key={i} index={i + 1} title={s.title} icon={s.icon} description={s.desc} ctaText={s.cta} />)}
       </div>
-    </section>
-  );
+    </section>;
 };
 
 /**
@@ -269,8 +245,7 @@ const ServicesList = () => {
 const References = () => {
   const referenceImages = [ref1, ref2, ref3, ref4];
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
-  return (
-    <>
+  return <>
       <section id="references" className="relative overflow-hidden">
         {/* Background with overlay */}
         <div className="relative w-full h-[300px] md:h-[400px]">
@@ -285,41 +260,20 @@ const References = () => {
         {/* Grid of images */}
         <div className="bg-black py-12 px-4">
           <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
-            {referenceImages.map((img, index) => (
-              <div
-                key={index}
-                onClick={() => setSelectedImage(img)}
-                className="relative aspect-square overflow-hidden rounded-xl group cursor-pointer"
-              >
-                <img
-                  src={img}
-                  alt={`Referenssi ${index + 1}`}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
+            {referenceImages.map((img, index) => <div key={index} onClick={() => setSelectedImage(img)} className="relative aspect-square overflow-hidden rounded-xl group cursor-pointer">
+                <img src={img} alt={`Referenssi ${index + 1}`} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
                 <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors duration-300"></div>
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
       </section>
-      {selectedImage && (
-        <div
-          className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4 cursor-pointer animate-in fade-in duration-200"
-          onClick={() => setSelectedImage(null)}
-        >
+      {selectedImage && <div className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4 cursor-pointer animate-in fade-in duration-200" onClick={() => setSelectedImage(null)}>
           <button onClick={() => setSelectedImage(null)} className="absolute top-6 right-6 text-white hover:text-amber-400 transition-colors z-50">
             <X size={32} />
           </button>
-          <img
-            src={selectedImage}
-            alt="Referenssi suurennos"
-            className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl animate-in zoom-in-90 duration-300"
-            onClick={e => e.stopPropagation()}
-          />
-        </div>
-      )}
-    </>
-  );
+          <img src={selectedImage} alt="Referenssi suurennos" className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl animate-in zoom-in-90 duration-300" onClick={e => e.stopPropagation()} />
+        </div>}
+    </>;
 };
 
 /**
@@ -328,44 +282,26 @@ const References = () => {
  */
 const FloatingContactButton = () => {
   const [isOpen, setIsOpen] = useState(false);
-  
-  return (
-    <div className="fixed bottom-6 right-6 z-50">
+  return <div className="fixed bottom-6 right-6 z-50">
       {/* Contact popup */}
-      {isOpen && (
-        <div className="absolute bottom-16 right-0 mb-2 bg-black border-2 border-amber-600 rounded-2xl p-4 shadow-2xl shadow-amber-900/30 min-w-[220px] animate-in fade-in slide-in-from-bottom-2 duration-200">
+      {isOpen && <div className="absolute bottom-16 right-0 mb-2 bg-black border-2 border-amber-600 rounded-2xl p-4 shadow-2xl shadow-amber-900/30 min-w-[220px] animate-in fade-in slide-in-from-bottom-2 duration-200">
           <div className="space-y-3">
-            <a 
-              href="tel:+358449700432" 
-              className="flex items-center gap-3 text-white hover:text-amber-400 transition-colors font-medium p-2 hover:bg-amber-900/20 rounded-lg"
-            >
+            <a href="tel:+358449700432" className="flex items-center gap-3 text-white hover:text-amber-400 transition-colors font-medium p-2 hover:bg-amber-900/20 rounded-lg">
               <Phone size={20} className="text-amber-500" />
               <span>+358 44 970 0432</span>
             </a>
-            <a 
-              href="mailto:info@srgd.fi" 
-              className="flex items-center gap-3 text-white hover:text-amber-400 transition-colors font-medium p-2 hover:bg-amber-900/20 rounded-lg"
-            >
+            <a href="mailto:info@srgd.fi" className="flex items-center gap-3 text-white hover:text-amber-400 transition-colors font-medium p-2 hover:bg-amber-900/20 rounded-lg">
               <Mail size={20} className="text-amber-500" />
               <span>info@srgd.fi</span>
             </a>
           </div>
-        </div>
-      )}
+        </div>}
       
       {/* Phone button */}
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="w-14 h-14 bg-black border-2 border-amber-600 rounded-full flex items-center justify-center shadow-xl shadow-amber-900/30 hover:scale-110 hover:border-amber-500 transition-all duration-300 group"
-      >
-        {isOpen ? (
-          <X size={24} className="text-amber-500 group-hover:text-amber-400" />
-        ) : (
-          <Phone size={24} className="text-amber-500 group-hover:text-amber-400" />
-        )}
+      <button onClick={() => setIsOpen(!isOpen)} className="w-14 h-14 bg-black border-2 border-amber-600 rounded-full flex items-center justify-center shadow-xl shadow-amber-900/30 hover:scale-110 hover:border-amber-500 transition-all duration-300 group">
+        {isOpen ? <X size={24} className="text-amber-500 group-hover:text-amber-400" /> : <Phone size={24} className="text-amber-500 group-hover:text-amber-400" />}
       </button>
-    </div>
-  );
+    </div>;
 };
 
 /**
@@ -373,8 +309,7 @@ const FloatingContactButton = () => {
  * Displays company and billing information.
  */
 const ContactSection = () => {
-  return (
-    <section id="contact" className="relative py-24 px-6">
+  return <section id="contact" className="relative py-24 px-6">
       <div className="relative z-10 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           {/* Left - Company Info */}
@@ -404,17 +339,9 @@ const ContactSection = () => {
             </div>
             {/* Embedded map */}
             <div className="rounded-2xl overflow-hidden shadow-xl border border-neutral-700">
-              <iframe
-                src="https://maps.google.com/maps?q=Ahlaistentie%20648,%2029700%20Ahlainen&t=&z=14&ie=UTF8&iwloc=&output=embed"
-                width="100%"
-                height="250"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Restaurointi Södergård Oy sijainti"
-                className="grayscale hover:grayscale-0 transition-all duration-500"
-              />
+              <iframe src="https://maps.google.com/maps?q=Ahlaistentie%20648,%2029700%20Ahlainen&t=&z=14&ie=UTF8&iwloc=&output=embed" width="100%" height="250" style={{
+              border: 0
+            }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="Restaurointi Södergård Oy sijainti" className="grayscale hover:grayscale-0 transition-all duration-500" />
             </div>
           </div>
           {/* Right - Billing Info */}
@@ -448,8 +375,7 @@ const ContactSection = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
 
 /**
@@ -457,8 +383,7 @@ const ContactSection = () => {
  * Concluding section of the page.
  */
 const Footer = () => {
-  return (
-    <div className="bg-black w-full px-2 pb-2">
+  return <div className="bg-black w-full px-2 pb-2">
       <footer id="footer" className="relative py-12 px-6 overflow-hidden bg-black rounded-[2.5rem] border border-neutral-800">
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="w-full flex flex-col md:flex-row justify-between items-center text-gray-500 text-sm gap-4">
@@ -470,8 +395,7 @@ const Footer = () => {
           </div>
         </div>
       </footer>
-    </div>
-  );
+    </div>;
 };
 
 /**
@@ -484,27 +408,24 @@ const App = () => {
     setView('home');
     window.scrollTo(0, 0);
   };
-  return (
-    <div className="bg-black min-h-screen font-sans antialiased selection:bg-amber-900 selection:text-black text-white">
+  return <div className="bg-black min-h-screen font-sans antialiased selection:bg-amber-900 selection:text-black text-white">
       <FloatingContactButton />
-      {view === 'home' ? (
-        <div className="flex flex-col">
+      {view === 'home' ? <div className="flex flex-col">
           <Hero onNavigate={dest => {
-            if (dest === 'contact') {
-              document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-            } else {
-              handleNavigateHome();
-            }
-          }} />
+        if (dest === 'contact') {
+          document.getElementById('contact')?.scrollIntoView({
+            behavior: 'smooth'
+          });
+        } else {
+          handleNavigateHome();
+        }
+      }} />
           <SodergardWhyParallax />
           <ServicesList />
           <References />
           <ContactSection />
           <Footer />
-        </div>
-      ) : null}
-    </div>
-  );
+        </div> : null}
+    </div>;
 };
-
 export default App;
