@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import SodergardWhyParallax from './components/SodergardWhyParallax';
+import LaatuSection from './components/LaatuSection';
 import {
   Menu,
   X,
@@ -230,12 +231,6 @@ const getRestorationPhotoId = (i: number) => {
 const ServicesList = () => {
   const services = [
     {
-      title: 'Laatu',
-      icon: CheckCircle2,
-      desc: 'Laatu on yksi perusarvoistamme. Käytämme vain parhaita materiaaleja ja perinteisiä menetelmiä, joilla varmistetaan kestävä lopputulos.',
-      cta: 'Laadun periaatteet',
-    },
-    {
       title: 'Restaurointi',
       icon: Hammer,
       desc: 'Olemme erikoistuneet puurakennuksien ja perinteisten kohteiden restaurointiin ja entisöintiin.',
@@ -258,8 +253,10 @@ const ServicesList = () => {
     <section id="services" className="relative py-24 overflow-hidden bg-black w-full">
       <div className="absolute inset-0 z-0" style={{ background: 'radial-gradient(circle at 30% 70%, #0a0a0a 0%, transparent 45%), radial-gradient(circle at 70% 30%, #111 0%, transparent 45%)', width: '100%', height: '100%' }} />
       <div className="space-y-32 relative z-10">
+        {/* Laatu section with 2x2 grid */}
+        <LaatuSection />
         {services.map((s, i) => (
-          <ServiceRow key={i} index={i} title={s.title} icon={s.icon} description={s.desc} ctaText={s.cta} />
+          <ServiceRow key={i} index={i + 1} title={s.title} icon={s.icon} description={s.desc} ctaText={s.cta} />
         ))}
       </div>
     </section>
