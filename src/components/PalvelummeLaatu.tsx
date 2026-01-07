@@ -19,27 +19,27 @@ const GradientButton = ({ children, className = '' }: { children: React.ReactNod
 export default function PalvelummeLaatu() {
   const testimonials = [
     {
-      quote: "Laatu on yksi perusarvoistamme. Käytämme vain parhaita materiaaleja ja perinteisiä menetelmiä, joilla varmistetaan kestävä lopputulos.",
+      quote: "",
       name: "Laatu",
-      designation: "Kestävä lopputulos",
+      designation: "",
       src: "/palvelut/laatu-1.jpg",
     },
     {
-      quote: "Jokainen projekti saa saman huolellisen käsittelyn. Tarkastamme työn laadun jokaisessa vaiheessa.",
+      quote: "",
       name: "Huolellisuus",
-      designation: "Tarkka työnjälki",
+      designation: "",
       src: "/palvelut/laatu-2.jpg",
     },
     {
-      quote: "Valitsemme materiaalit pitkäikäisyyden ja perinteisen ulkonäön perusteella. Ei kompromisseja.",
+      quote: "",
       name: "Materiaalit",
-      designation: "Parhaat raaka-aineet",
+      designation: "",
       src: "/palvelut/laatu-3.jpg",
     },
     {
-      quote: "Restaurointi vaatii ammattitaitoa ja kokemusta. Meillä on molemmat.",
+      quote: "",
       name: "Ammattitaito",
-      designation: "Vuosien kokemus",
+      designation: "",
       src: "/palvelut/laatu-4.jpg",
     },
   ];
@@ -66,9 +66,9 @@ export default function PalvelummeLaatu() {
             </div>
           </div>
 
-          {/* Right: AnimatedTestimonials */}
+          {/* Right: AnimatedTestimonials - images only */}
           <div className="w-full">
-            <AnimatedTestimonials testimonials={testimonials} autoplay={true} />
+            <AnimatedTestimonials testimonials={testimonials} autoplay={false} />
           </div>
         </div>
       </div>
