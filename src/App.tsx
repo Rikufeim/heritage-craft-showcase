@@ -6,7 +6,7 @@ import ValuesAndPrinciples from './components/ValuesAndPrinciples';
 import SummaryAndCallToAction from './components/SummaryAndCallToAction';
 import GradientButton from './components/ui/GradientButton';
 import SodergardWhyParallax from './components/SodergardWhyParallax';
-
+import Referenssit from './components/Referenssit';
 
 // NOTE: Images below are placeholders.
 const heroBanner = 'https://images.unsplash.com/photo-1528909514045-2fa4ac7a08ba?auto=format&fit=crop&w=1000&q=80';
@@ -35,6 +35,10 @@ const FloatingDock = ({
       });
     }
   }, {
+    name: 'Referenssit',
+    href: '#referenssit',
+    action: () => onNavigate('referenssit')
+  }, {
     name: 'Yhteystiedot',
     href: '#contact',
     action: () => {
@@ -44,44 +48,62 @@ const FloatingDock = ({
       });
     }
   }];
-  return <nav className="absolute top-0 left-0 right-0 z-50 px-6 py-4">
-    <div className="flex items-center justify-between w-full max-w-7xl mx-auto">
-      <div onClick={() => onNavigate('home')} className="cursor-pointer select-none">
-        <img src="/sodergard/logo-large.png" alt="Södergård Logo" className="h-20 w-auto object-contain" />
-      </div>
-      <div className="hidden md:flex items-center gap-6 p-2">
-        {navLinks.map(link => <a key={link.name} href={link.href} onClick={e => {
-          e.preventDefault();
-          onNavigate(link.href.substring(1));
-        }} className="text-sm font-semibold text-gray-300 hover:text-amber-400 transition-colors duration-200 px-4 py-1 uppercase tracking-wide cursor-pointer">{link.name}</a>)}
+  return (
+    <>
+      {/* Navigation bar */}
+      <nav className="absolute top-0 left-0 right-0 z-50 px-6 py-4 bg-black/80 backdrop-blur-sm">
+        <div className="flex items-center justify-end w-full max-w-7xl mx-auto">
+          <div className="hidden md:flex items-center gap-6 p-2">
+            {navLinks.map(link => <a key={link.name} href={link.href} onClick={e => {
+              e.preventDefault();
+              if (link.href === '#referenssit') {
+                link.action();
+              } else {
+                onNavigate(link.href.substring(1));
+              }
+            }} className="text-sm font-semibold text-gray-300 hover:text-amber-400 transition-colors duration-200 px-4 py-1 uppercase tracking-wide cursor-pointer">{link.name}</a>)}
 
-        <div className="flex items-center gap-4 ml-2">
-          <a href="https://www.facebook.com/Restaurointisodergardoy/?locale=fi_FI" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-amber-500 transition-colors">
-            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" /></svg>
-          </a>
-          <a href="https://www.instagram.com/restaurointi_sodergard_oy/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-amber-500 transition-colors">
-            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" /></svg>
-          </a>
+            <div className="flex items-center gap-4 ml-2">
+              <a href="https://www.facebook.com/Restaurointisodergardoy/?locale=fi_FI" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-amber-500 transition-colors">
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" /></svg>
+              </a>
+              <a href="https://www.instagram.com/restaurointi_sodergard_oy/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-amber-500 transition-colors">
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" /></svg>
+              </a>
+            </div>
+          </div>
+          <button className="md:hidden text-gray-400 hover:text-amber-500" onClick={() => setIsOpen(!isOpen)}>
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </div>
+        {isOpen && <div className="absolute top-full mt-2 left-4 right-4 border border-neutral-700 rounded-xl p-4 flex flex-col gap-4 shadow-xl md:hidden bg-black/80 backdrop-blur-sm animate-in fade-in slide-in-from-top-2 z-50">
+            {navLinks.map(link => <a key={link.name} href={link.href} onClick={e => {
+            e.preventDefault();
+            setIsOpen(false);
+            link.action();
+            if (link.href === '#hero') window.scrollTo({
+              top: 0,
+              behavior: 'smooth'
+            });
+          }} className="text-gray-300 hover:text-amber-400 font-bold py-3 px-4 hover:bg-white/5 rounded-lg transition-all border-b border-white/5 last:border-0">
+              {link.name}
+            </a>)}
+          </div>}
+      </nav>
+      
+      {/* Overlapping Logo */}
+      <div 
+        onClick={() => onNavigate('home')} 
+        className="absolute left-6 md:left-12 top-8 z-50 cursor-pointer select-none"
+      >
+        <img 
+          src="/sodergard/logo-large.png" 
+          alt="Södergård Logo" 
+          className="h-24 md:h-32 w-auto object-contain drop-shadow-2xl" 
+        />
       </div>
-      <button className="md:hidden text-gray-400 hover:text-amber-500" onClick={() => setIsOpen(!isOpen)}>
-        {isOpen ? <X size={24} /> : <Menu size={24} />}
-      </button>
-    </div>
-    {isOpen && <div className="absolute top-full mt-2 left-0 right-0 mx-4 border border-neutral-700 rounded-xl p-4 flex flex-col gap-4 shadow-xl md:hidden bg-black/80 backdrop-blur-sm animate-in fade-in slide-in-from-top-2 z-50">
-        {navLinks.map(link => <a key={link.name} href={link.href} onClick={e => {
-        e.preventDefault();
-        setIsOpen(false);
-        link.action();
-        if (link.href === '#hero') window.scrollTo({
-          top: 0,
-          behavior: 'smooth'
-        });
-      }} className="text-gray-300 hover:text-amber-400 font-bold py-3 px-4 hover:bg-white/5 rounded-lg transition-all border-b border-white/5 last:border-0">
-          {link.name}
-        </a>)}
-      </div>}
-  </nav>;
+    </>
+  );
 };
 
 /**
@@ -282,41 +304,59 @@ const Footer = () => {
  */
 const App = () => {
   const [view, setView] = useState('home');
-  const handleNavigateHome = () => {
-    setView('home');
-    window.scrollTo(0, 0);
+  
+  const handleNavigate = (dest: string) => {
+    if (dest === 'home') {
+      setView('home');
+      window.scrollTo(0, 0);
+    } else if (dest === 'referenssit') {
+      setView('referenssit');
+      window.scrollTo(0, 0);
+    } else if (dest === 'contact') {
+      if (view !== 'home') {
+        setView('home');
+        setTimeout(() => {
+          document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      } else {
+        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else if (dest === 'services') {
+      if (view !== 'home') {
+        setView('home');
+        setTimeout(() => {
+          document.getElementById('services-start')?.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      } else {
+        document.getElementById('services-start')?.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
   };
-  return <div className="bg-black min-h-screen font-sans antialiased selection:bg-amber-900 selection:text-black text-white">
-    <FloatingContactButton />
-    {view === 'home' ? <div className="flex flex-col">
-      <Hero onNavigate={dest => {
-        if (dest === 'contact') {
-          document.getElementById('contact')?.scrollIntoView({
-            behavior: 'smooth'
-          });
-        } else {
-          handleNavigateHome();
-        }
-      }} />
 
-      <Introduction />
-
-      {/* Restoring the Parallax visual section here as a bridge */}
-      <SodergardWhyParallax />
-
+  return (
+    <div className="bg-black min-h-screen font-sans antialiased selection:bg-amber-900 selection:text-black text-white">
+      <FloatingContactButton />
       
-
-      <div id="services-start">
-        <ServicesSodergard />
-      </div>
-
-      <ValuesAndPrinciples />
-
-      <SummaryAndCallToAction />
-
-      <ContactSection />
-      <Footer />
-    </div> : null}
-  </div>;
+      {view === 'home' && (
+        <div className="flex flex-col">
+          <Hero onNavigate={handleNavigate} />
+          <Introduction />
+          <SodergardWhyParallax />
+          <div id="services-start">
+            <ServicesSodergard />
+          </div>
+          <ValuesAndPrinciples />
+          <SummaryAndCallToAction />
+          <ContactSection />
+          <Footer />
+        </div>
+      )}
+      
+      {view === 'referenssit' && (
+        <Referenssit onNavigate={handleNavigate} />
+      )}
+    </div>
+  );
 };
+
 export default App;
