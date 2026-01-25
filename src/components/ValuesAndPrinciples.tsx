@@ -22,7 +22,7 @@ const ValueItem = ({
 const ValuesAndPrinciples = () => {
     const sodergardValues = [
         {
-            title: "Säilyttävä korjausrakentaminen",
+            title: "Kulttuuriperintöä vaalien",
             description: "Rakennuksia korjataan niiden aikakauden, materiaalien ja rakenteellisen logiikan ehdoilla."
         },
         {
@@ -30,16 +30,16 @@ const ValuesAndPrinciples = () => {
             description: "Työ on esteettistä, perusteltua ja rakennuksen luonnetta kunnioittavaa."
         },
         {
-            title: "Käsityöläisyys ja kierrätys",
+            title: "Käsityöläisyys ja ammattiylpeys",
+            description: "Työ tehdään huolellisesti ja työmaa jätetään parempaan kuntoon kuin se oli."
+        },
+        {
+            title: "Kierrätys ja vastuu",
             description: "Mahdollisimman paljon olemassa olevaa säilytetään ja hyödynnetään."
         },
         {
             title: "Avoimuus ja dokumentointi",
             description: "Työ dokumentoidaan ja asiakkaalle kerrotaan selkeästi, mitä rakenteille tehdään."
-        },
-        {
-            title: "Ammattiylpeys ja vastuu",
-            description: "Työ tehdään huolellisesti ja työmaa jätetään parempaan kuntoon kuin se oli."
         },
         {
             title: "Täsmällisyys ja tiimityö",
@@ -56,7 +56,7 @@ const ValuesAndPrinciples = () => {
                         <div className="space-y-6">
                             <h2 className="text-4xl md:text-5xl font-playfair font-bold text-heading">Arvot ja periaatteet</h2>
                             <p className="text-gray-400 text-lg leading-relaxed">
-                                Kaikkea toimintaamme ohjaa kunnioitus historiaa kohtaan, tinkimätön laatu ja vastuullisuus tulevaisuudesta.
+                                Kaikkea toimintaamme ohjaa rakennuskulttuuriperimän säilyttäminen, kädentaitojen vaaliminen ja tinkimätön laatu.
                             </p>
                         </div>
 

@@ -6,7 +6,7 @@ import ValuesAndPrinciples from './components/ValuesAndPrinciples';
 import SummaryAndCallToAction from './components/SummaryAndCallToAction';
 import GradientButton from './components/ui/GradientButton';
 import SodergardWhyParallax from './components/SodergardWhyParallax';
-import WhyChooseSodergard from './components/WhyChooseSodergard';
+
 
 // NOTE: Images below are placeholders.
 const heroBanner = 'https://images.unsplash.com/photo-1528909514045-2fa4ac7a08ba?auto=format&fit=crop&w=1000&q=80';
@@ -304,7 +304,7 @@ const App = () => {
       {/* Restoring the Parallax visual section here as a bridge */}
       <SodergardWhyParallax />
 
-      <WhyChooseSodergard />
+      
 
       <div id="services-start">
         <ServicesSodergard />

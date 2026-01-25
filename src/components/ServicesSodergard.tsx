@@ -1,46 +1,21 @@
 
 import React, { useState } from 'react';
-import { ChevronDown, ChevronUp, X } from 'lucide-react';
+import { X } from 'lucide-react';
 
 const ServiceItem = ({
     title,
     description,
-    details
 }: {
     title: string;
     description: string;
-    details: string[];
 }) => {
-    const [isOpen, setIsOpen] = useState(false);
-
     return (
         <div className="py-8 border-b border-neutral-800 first:border-t hover:border-neutral-700 transition-colors duration-300">
             <div className="flex flex-col md:flex-row justify-between gap-4 md:items-start text-left">
                 <div className="space-y-2 max-w-2xl">
                     <h3 className="text-2xl font-playfair font-bold text-white mb-2">{title}</h3>
                     <p className="text-gray-400 text-lg leading-relaxed">{description}</p>
-
-                    <div className={`grid grid-rows-[0fr] ${isOpen ? 'grid-rows-[1fr]' : ''} transition-[grid-template-rows] duration-300`}>
-                        <div className="overflow-hidden">
-                            <ul className="pt-4 space-y-2">
-                                {details.map((detail, i) => (
-                                    <li key={i} className="flex items-start gap-2 text-base text-gray-300">
-                                        <span className="w-1.5 h-1.5 rounded-full bg-heading mt-2 shrink-0" />
-                                        <span>{detail}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    </div>
                 </div>
-
-                <button
-                    onClick={() => setIsOpen(!isOpen)}
-                    className="flex items-center gap-2 text-sm font-medium text-heading hover:text-white transition-colors uppercase tracking-widest shrink-0 pt-2"
-                >
-                    {isOpen ? 'Vähemmän' : 'Lue lisää'}
-                    {isOpen ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-                </button>
             </div>
         </div>
     );
@@ -65,75 +40,35 @@ const ServicesSodergard = () => {
     const services = [
         {
             title: "Hirsirakennusten nosto ja siirto",
-            description: "Rakennusten turvallinen nosto ja siirto alkuperäistä rakennetta ja arvoa kunnioittaen.",
-            details: [
-                "Hallitut nostotyköt vankalla kokemuksella",
-                "Ratkaisut räätälöidään aina kohteen ja käyttötarkoituksen mukaan",
-                "Perustusten korjaus noston yhteydessä"
-            ]
+            description: "Rakennusten turvallinen nosto ja siirto alkuperäistä rakennetta ja arvoa kunnioittaen."
         },
         {
             title: "Hirren vaihto",
-            description: "Lahonneiden tai vaurioituneiden hirsien huolellinen vaihto perinteitä kunnioittaen.",
-            details: [
-                "Perinteiset veistotekniikat",
-                "Laadukkaat, valikoidut hirret",
-                "Rakennuksen ryhdin palautus"
-            ]
+            description: "Lahonneiden tai vaurioituneiden hirsien huolellinen vaihto perinteitä kunnioittaen."
         },
         {
             title: "Sisustuskirvesmiehentyöt",
-            description: "Listoitukset, paneelit ja puusepäntyöt rakennuksen alkuperäistä henkeä vaalien.",
-            details: [
-                "Aikakauden mukaiset listoitukset",
-                "Erikoispuusepäntyöt",
-                "Vanhan säilyttäminen ja uuden sovittaminen"
-            ]
+            description: "Listoitukset, paneelit ja puusepäntyöt rakennuksen alkuperäistä henkeä vaalien."
         },
         {
             title: "Luonnonkiviperustukset",
-            description: "Uudet luonnonkiviperustukset ja vanhojen kivijalkojen korjaus perinteisin menetelmin.",
-            details: [
-                "Perinteinen ladonta ja kiilaus",
-                "Kappaletavaran työstö paikan päällä",
-                "Roudan ja kosteuden hallinta"
-            ]
+            description: "Uudet luonnonkiviperustukset ja vanhojen kivijalkojen korjaus perinteisin menetelmin."
         },
         {
             title: "Rakenteet",
-            description: "Vesikattojen, väli- ja alapohjien korjaus kestävillä ja toimivilla ratkaisuilla.",
-            details: [
-                "Hengittävät rakenneratkaisut",
-                "Vaurioiden syiden selvitys ja korjaus",
-                "Pitkäikäiset materiaalivalinnat"
-            ]
+            description: "Vesikattojen, väli- ja alapohjien korjaus kestävillä ja toimivilla ratkaisuilla."
         },
         {
             title: "Pintakäsittelyt",
-            description: "Perinteiset pintakäsittelymenetelmät, jotka suojaavat ja kaunistavat rakennusta.",
-            details: [
-                "Punamultakeittomaalit",
-                "Pellavaöljymaalaukset",
-                "Kuultokäsittelyt ja vahat"
-            ]
+            description: "Perinteiset pintakäsittelymenetelmät, jotka suojaavat ja kaunistavat rakennusta."
         },
         {
             title: "Savirappaus",
-            description: "Luonnollinen ja hengittävä ratkaisu, joka parantaa sisäilmaa ja energiatehokkuutta.",
-            details: [
-                "Ekologinen pintamateriaali",
-                "Tasaa ilmankosteutta ja lämpöä",
-                "Elävä ja kaunis pinta"
-            ]
+            description: "Luonnollinen ja hengittävä ratkaisu, joka parantaa sisäilmaa ja energiatehokkuutta."
         },
         {
             title: "Ikkunoiden ja ovien entisöinti",
-            description: "Historiallisten ikkunoiden ja ovien kunnostus – ulkonäkö säilyy ja energiatehokkuus paranee.",
-            details: [
-                "Puitteiden ja karmien puukorjaukset",
-                "Lasitukset ja kitaukset",
-                "Helat ja lukot"
-            ]
+            description: "Historiallisten ikkunoiden ja ovien kunnostus – ulkonäkö säilyy ja energiatehokkuus paranee."
         }
     ];
 
@@ -156,7 +91,7 @@ const ServicesSodergard = () => {
                         Palvelut – <span className="text-heading">Restaurointi Södergård Oy</span>
                     </h2>
                     <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-                        Erikoisosaamistamme ovat vaativat restaurointityöt, joissa yhdistyvät perinteiset menetelmät, syvä materiaalituntemus ja tinkimätön laatu.
+                        Erikoisosaamistamme ovat vaativat restaurointi- ja korjaustyöt, joissa yhdistyvät perinteiset menetelmät, syvä materiaalituntemus ja tinkimätön laatu.
                     </p>
                 </div>
 
