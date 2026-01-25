@@ -17,7 +17,7 @@ const Introduction = () => {
                         <span className="font-semibold text-white">Restaurointi Södergård Oy</span> on erikoistunut vanhojen perinteisten rakennusten restaurointiin ja säilyttävään korjausrakentamiseen.
                     </p>
                     <p>
-                        Toimimme aina kohteen ehdoilla, käyttäen perinteisiä materiaaleja ja työtapoja, jotka varmistavat rakennuksen säilymisen myös tuleville sukupolville.
+                        Vaalimme rakennusperintöä kunnioittamalla kunkin kohteen historiallista luonnetta. Oikeat materiaalit ja perinteiset käsityömenetelmät yhdistettynä moderniin toteutukseen takaa, että kulttuuriperintömme säilyy myös tuleville sukupolville.
                     </p>
                 </div>
             </div>
