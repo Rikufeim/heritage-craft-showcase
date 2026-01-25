@@ -30,17 +30,20 @@ const FloatingDock = ({
     href: '#services',
     action: () => {
       const el = document.getElementById('services-start');
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
+      if (el) el.scrollIntoView({
+        behavior: 'smooth'
+      });
     }
   }, {
     name: 'Yhteystiedot',
     href: '#contact',
     action: () => {
       const el = document.getElementById('contact');
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
+      if (el) el.scrollIntoView({
+        behavior: 'smooth'
+      });
     }
   }];
-
   return <nav className="absolute top-0 left-0 right-0 z-50 px-6 py-4">
     <div className="flex items-center justify-between w-full max-w-7xl mx-auto">
       <div onClick={() => onNavigate('home')} className="cursor-pointer select-none">
@@ -65,19 +68,20 @@ const FloatingDock = ({
         {isOpen ? <X size={24} /> : <Menu size={24} />}
       </button>
     </div>
-    {
-      isOpen && <div className="absolute top-full mt-2 left-0 right-0 mx-4 border border-neutral-700 rounded-xl p-4 flex flex-col gap-4 shadow-xl md:hidden bg-black/80 backdrop-blur-sm animate-in fade-in slide-in-from-top-2 z-50">
-        {navLinks.map(link => <a key={link.name} href={link.href} onClick={(e) => {
-          e.preventDefault();
-          setIsOpen(false);
-          link.action();
-          if (link.href === '#hero') window.scrollTo({ top: 0, behavior: 'smooth' });
-        }} className="text-gray-300 hover:text-amber-400 font-bold py-3 px-4 hover:bg-white/5 rounded-lg transition-all border-b border-white/5 last:border-0">
+    {isOpen && <div className="absolute top-full mt-2 left-0 right-0 mx-4 border border-neutral-700 rounded-xl p-4 flex flex-col gap-4 shadow-xl md:hidden bg-black/80 backdrop-blur-sm animate-in fade-in slide-in-from-top-2 z-50">
+        {navLinks.map(link => <a key={link.name} href={link.href} onClick={e => {
+        e.preventDefault();
+        setIsOpen(false);
+        link.action();
+        if (link.href === '#hero') window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      }} className="text-gray-300 hover:text-amber-400 font-bold py-3 px-4 hover:bg-white/5 rounded-lg transition-all border-b border-white/5 last:border-0">
           {link.name}
         </a>)}
-      </div>
-    }
-  </nav >;
+      </div>}
+  </nav>;
 };
 
 /**
@@ -126,15 +130,14 @@ const Hero = ({
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-start items-center mt-6">
           <GradientButton onClick={() => {
-            document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+            document.getElementById('contact')?.scrollIntoView({
+              behavior: 'smooth'
+            });
           }}>
             Ota yhteyttä
             <ArrowRight size={20} />
           </GradientButton>
-          <div className="flex items-center gap-2 px-6 py-4 text-white font-medium">
-            <CheckCircle2 className="text-heading" size={20} />
-            <span>Perinteinen osaaminen</span>
-          </div>
+          
         </div>
       </div>
     </section>
