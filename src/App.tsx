@@ -6,7 +6,7 @@ import ValuesAndPrinciples from './components/ValuesAndPrinciples';
 import SummaryAndCallToAction from './components/SummaryAndCallToAction';
 import GradientButton from './components/ui/GradientButton';
 import SodergardWhyParallax from './components/SodergardWhyParallax';
-import Referenssit from './components/Referenssit';
+import ReferenssitSection from './components/ReferenssitSection';
 
 // NOTE: Images below are placeholders.
 const heroBanner = 'https://images.unsplash.com/photo-1528909514045-2fa4ac7a08ba?auto=format&fit=crop&w=1000&q=80';
@@ -37,7 +37,12 @@ const FloatingDock = ({
   }, {
     name: 'Referenssit',
     href: '#referenssit',
-    action: () => onNavigate('referenssit')
+    action: () => {
+      const el = document.getElementById('referenssit');
+      if (el) el.scrollIntoView({
+        behavior: 'smooth'
+      });
+    }
   }, {
     name: 'Yhteystiedot',
     href: '#contact',
@@ -56,11 +61,7 @@ const FloatingDock = ({
           <div className="hidden md:flex items-center gap-6 p-2">
             {navLinks.map(link => <a key={link.name} href={link.href} onClick={e => {
               e.preventDefault();
-              if (link.href === '#referenssit') {
-                link.action();
-              } else {
-                onNavigate(link.href.substring(1));
-              }
+              link.action();
             }} className="text-sm font-semibold text-gray-300 hover:text-amber-400 transition-colors duration-200 px-4 py-1 uppercase tracking-wide cursor-pointer">{link.name}</a>)}
 
             <div className="flex items-center gap-4 ml-2">
@@ -306,30 +307,15 @@ const App = () => {
   const [view, setView] = useState('home');
   
   const handleNavigate = (dest: string) => {
-    if (dest === 'home') {
+    if (dest === 'home' || dest === 'hero') {
       setView('home');
       window.scrollTo(0, 0);
-    } else if (dest === 'referenssit') {
-      setView('referenssit');
-      window.scrollTo(0, 0);
     } else if (dest === 'contact') {
-      if (view !== 'home') {
-        setView('home');
-        setTimeout(() => {
-          document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-        }, 100);
-      } else {
-        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-      }
+      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
     } else if (dest === 'services') {
-      if (view !== 'home') {
-        setView('home');
-        setTimeout(() => {
-          document.getElementById('services-start')?.scrollIntoView({ behavior: 'smooth' });
-        }, 100);
-      } else {
-        document.getElementById('services-start')?.scrollIntoView({ behavior: 'smooth' });
-      }
+      document.getElementById('services-start')?.scrollIntoView({ behavior: 'smooth' });
+    } else if (dest === 'referenssit') {
+      document.getElementById('referenssit')?.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -345,15 +331,12 @@ const App = () => {
           <div id="services-start">
             <ServicesSodergard />
           </div>
+          <ReferenssitSection />
           <ValuesAndPrinciples />
           <SummaryAndCallToAction />
           <ContactSection />
           <Footer />
         </div>
-      )}
-      
-      {view === 'referenssit' && (
-        <Referenssit onNavigate={handleNavigate} />
       )}
     </div>
   );
