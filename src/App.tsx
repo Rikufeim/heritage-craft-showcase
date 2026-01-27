@@ -53,15 +53,16 @@ const FloatingDock = ({
       });
     }
   }];
-  return <>
+  return (
+    <>
       {/* Navigation bar */}
       <nav className="absolute top-0 left-0 right-0 z-50 px-6 py-4 bg-black/80 backdrop-blur-sm">
         <div className="flex items-center justify-end w-full max-w-7xl mx-auto">
           <div className="hidden md:flex items-center gap-6 p-2">
             {navLinks.map(link => <a key={link.name} href={link.href} onClick={e => {
-            e.preventDefault();
-            link.action();
-          }} className="text-sm font-semibold text-gray-300 hover:text-amber-400 transition-colors duration-200 px-4 py-1 uppercase tracking-wide cursor-pointer">{link.name}</a>)}
+              e.preventDefault();
+              link.action();
+            }} className="text-sm font-semibold text-gray-300 hover:text-amber-400 transition-colors duration-200 px-4 py-1 uppercase tracking-wide cursor-pointer">{link.name}</a>)}
 
             <div className="flex items-center gap-4 ml-2">
               <a href="https://www.facebook.com/Restaurointisodergardoy/?locale=fi_FI" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-amber-500 transition-colors">
@@ -78,24 +79,32 @@ const FloatingDock = ({
         </div>
         {isOpen && <div className="absolute top-full mt-2 left-4 right-4 border border-neutral-700 rounded-xl p-4 flex flex-col gap-4 shadow-xl md:hidden bg-black/80 backdrop-blur-sm animate-in fade-in slide-in-from-top-2 z-50">
             {navLinks.map(link => <a key={link.name} href={link.href} onClick={e => {
-          e.preventDefault();
-          setIsOpen(false);
-          link.action();
-          if (link.href === '#hero') window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-          });
-        }} className="text-gray-300 hover:text-amber-400 font-bold py-3 px-4 hover:bg-white/5 rounded-lg transition-all border-b border-white/5 last:border-0">
+            e.preventDefault();
+            setIsOpen(false);
+            link.action();
+            if (link.href === '#hero') window.scrollTo({
+              top: 0,
+              behavior: 'smooth'
+            });
+          }} className="text-gray-300 hover:text-amber-400 font-bold py-3 px-4 hover:bg-white/5 rounded-lg transition-all border-b border-white/5 last:border-0">
               {link.name}
             </a>)}
           </div>}
       </nav>
       
       {/* Overlapping Logo */}
-      <div onClick={() => onNavigate('home')} className="absolute left-6 md:left-12 top-8 z-50 cursor-pointer select-none">
-        <img src="/sodergard/logo-large.png" alt="Södergård Logo" className="h-24 md:h-32 w-auto object-contain drop-shadow-2xl" />
+      <div 
+        onClick={() => onNavigate('home')} 
+        className="absolute left-6 md:left-12 top-8 z-50 cursor-pointer select-none"
+      >
+        <img 
+          src="/sodergard/logo-large.png" 
+          alt="Södergård Logo" 
+          className="h-24 md:h-32 w-auto object-contain drop-shadow-2xl" 
+        />
       </div>
-    </>;
+    </>
+  );
 };
 
 /**
@@ -215,7 +224,7 @@ const ContactSection = () => {
                   </a>
                 </div>
                 <div>
-                  
+                  <p className="font-bold text-white">Jukka Kukkonen <span className="font-normal text-gray-400">– Työnjohtaja</span></p>
                   <a href="tel:+358440473999" className="flex items-center gap-2 text-amber-400 hover:text-amber-300 transition-colors font-medium">
                     <Phone size={18} />
                     +358 44 047 3999
@@ -305,28 +314,26 @@ const Footer = () => {
  */
 const App = () => {
   const [view, setView] = useState('home');
+  
   const handleNavigate = (dest: string) => {
     if (dest === 'home' || dest === 'hero') {
       setView('home');
       window.scrollTo(0, 0);
     } else if (dest === 'contact') {
-      document.getElementById('contact')?.scrollIntoView({
-        behavior: 'smooth'
-      });
+      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
     } else if (dest === 'services') {
-      document.getElementById('services-start')?.scrollIntoView({
-        behavior: 'smooth'
-      });
+      document.getElementById('services-start')?.scrollIntoView({ behavior: 'smooth' });
     } else if (dest === 'referenssit') {
-      document.getElementById('referenssit')?.scrollIntoView({
-        behavior: 'smooth'
-      });
+      document.getElementById('referenssit')?.scrollIntoView({ behavior: 'smooth' });
     }
   };
-  return <div className="bg-black min-h-screen font-sans antialiased selection:bg-amber-900 selection:text-black text-white">
+
+  return (
+    <div className="bg-black min-h-screen font-sans antialiased selection:bg-amber-900 selection:text-black text-white">
       <FloatingContactButton />
       
-      {view === 'home' && <div className="flex flex-col">
+      {view === 'home' && (
+        <div className="flex flex-col">
           <Hero onNavigate={handleNavigate} />
           <Introduction />
           <SodergardWhyParallax />
@@ -338,7 +345,10 @@ const App = () => {
           <SummaryAndCallToAction />
           <ContactSection />
           <Footer />
-        </div>}
-    </div>;
+        </div>
+      )}
+    </div>
+  );
 };
+
 export default App;
