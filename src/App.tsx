@@ -215,12 +215,21 @@ const ContactSection = () => {
                 <p className="font-medium text-white">Ahlaistentie 648</p>
                 <p>29700 Ahlainen</p>
               </div>
-              <div className="pt-4 space-y-2">
-                <p className="font-bold text-white">Janne & Jukka</p>
-                <a href="tel:+358449700432" className="flex items-center gap-2 text-amber-400 hover:text-amber-300 transition-colors font-medium">
-                  <Phone size={18} />
-                  +358 44 970 0432
-                </a>
+              <div className="pt-4 space-y-3">
+                <div>
+                  <p className="font-bold text-white">Janne Södergård</p>
+                  <a href="tel:+358449700432" className="flex items-center gap-2 text-amber-400 hover:text-amber-300 transition-colors font-medium">
+                    <Phone size={18} />
+                    +358 44 970 0432
+                  </a>
+                </div>
+                <div>
+                  <p className="font-bold text-white">Jukka Kukkonen <span className="font-normal text-gray-400">– Työnjohtaja</span></p>
+                  <a href="tel:+358440473999" className="flex items-center gap-2 text-amber-400 hover:text-amber-300 transition-colors font-medium">
+                    <Phone size={18} />
+                    +358 44 047 3999
+                  </a>
+                </div>
                 <a href="mailto:info@srgd.fi" className="flex items-center gap-2 text-amber-400 hover:text-amber-300 transition-colors font-medium">
                   <Mail size={18} />
                   info@srgd.fi
