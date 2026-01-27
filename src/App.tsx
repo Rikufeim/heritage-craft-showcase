@@ -122,24 +122,9 @@ const Hero = ({
 
       {/* Full-width video background */}
       <div className="absolute top-20 left-0 right-0 bottom-0 z-0 rounded-t-[2rem] overflow-hidden mx-0">
-        {/* Fallback background image for devices that don't support video */}
-        <div 
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: 'url(/sodergard/town-hall.jpg)' }}
-        />
-        <video 
-          autoPlay 
-          loop 
-          muted 
-          playsInline
-          webkit-playsinline="true"
-          x5-playsinline="true"
-          poster="/sodergard/town-hall.jpg"
-          className="absolute inset-0 w-full h-full object-cover"
-        >
-          {/* MP4 first for best compatibility */}
-          <source src="/videos/hero-video.mov" type="video/mp4" />
+        <video autoPlay loop muted playsInline className="w-full h-full object-cover">
           <source src="/videos/hero-video.mov" type="video/quicktime" />
+          <source src="/videos/hero-video.mov" type="video/mp4" />
         </video>
         {/* Multi-layer fade for depth */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black pointer-events-none"></div>
