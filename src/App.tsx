@@ -127,7 +127,7 @@ const Hero = ({
       <FloatingDock onNavigate={onNavigate} />
 
       {/* Full-width video background with fade-in when ready */}
-      <div className={`absolute top-20 left-0 right-0 bottom-0 z-0 rounded-t-[2rem] overflow-hidden mx-0 transition-opacity duration-700 ease-out ${isVideoReady ? 'opacity-100' : 'opacity-0'}`}>
+      <div className={`absolute top-20 left-4 right-0 bottom-0 z-0 rounded-tl-[2rem] overflow-hidden mx-0 transition-opacity duration-700 ease-out ${isVideoReady ? 'opacity-100' : 'opacity-0'}`}>
         <video 
           autoPlay 
           loop 
@@ -145,11 +145,6 @@ const Hero = ({
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black pointer-events-none"></div>
         <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent pointer-events-none"></div>
       </div>
-
-      {/* Black corner gradient for logo area - matching the right side style */}
-      <div className="absolute top-0 left-0 w-80 h-80 pointer-events-none z-5" style={{
-        background: 'radial-gradient(ellipse at 0% 0%, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.8) 30%, rgba(0, 0, 0, 0.4) 50%, transparent 70%)'
-      }}></div>
 
       {/* Golden glow effect at top-left corner - reduced */}
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-10" style={{
