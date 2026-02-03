@@ -123,7 +123,7 @@ const Hero = ({
   };
 
   return <div className="bg-black w-full pb-32">
-    <section id="hero" className="min-h-[40rem] rounded-b-[2.5rem] flex flex-col items-start justify-start bg-black antialiased relative overflow-hidden border-b border-neutral-800 shadow-2xl w-full">
+    <section id="hero" className="min-h-[40rem] rounded-b-[2.5rem] flex flex-col items-start justify-start bg-black antialiased relative overflow-hidden w-full">
       <FloatingDock onNavigate={onNavigate} />
 
       {/* Full-width video background with fade-in when ready */}
