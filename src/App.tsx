@@ -146,6 +146,11 @@ const Hero = ({
         <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent pointer-events-none"></div>
       </div>
 
+      {/* Black corner gradient for logo area - matching the right side style */}
+      <div className="absolute top-0 left-0 w-80 h-80 pointer-events-none z-5" style={{
+        background: 'radial-gradient(ellipse at 0% 0%, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.8) 30%, rgba(0, 0, 0, 0.4) 50%, transparent 70%)'
+      }}></div>
+
       {/* Golden glow effect at top-left corner - reduced */}
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-10" style={{
         background: 'radial-gradient(circle at 5% 10%, rgba(245, 158, 11, 0.15), transparent 20%)'
