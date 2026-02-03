@@ -119,17 +119,16 @@ const Hero = ({
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    // Trigger animation after mount
-    const timer = setTimeout(() => setIsLoaded(true), 100);
-    return () => clearTimeout(timer);
+    // Trigger animation immediately
+    setIsLoaded(true);
   }, []);
 
   return <div className="bg-black w-full pb-32">
     <section id="hero" className="min-h-[40rem] rounded-b-[2.5rem] flex flex-col items-start justify-start bg-black antialiased relative overflow-hidden border-b border-neutral-800 shadow-2xl w-full">
       <FloatingDock onNavigate={onNavigate} />
 
-      {/* Full-width video background with fade-in animation */}
-      <div className={`absolute top-20 left-0 right-0 bottom-0 z-0 rounded-t-[2rem] overflow-hidden mx-0 transition-all duration-1000 ease-out ${isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-105'}`}>
+      {/* Full-width video background with quick fade-in */}
+      <div className={`absolute top-20 left-0 right-0 bottom-0 z-0 rounded-t-[2rem] overflow-hidden mx-0 transition-opacity duration-500 ease-out ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
         <video autoPlay loop muted playsInline className="w-full h-full object-cover">
           <source src="/videos/hero-video.mov" type="video/quicktime" />
           <source src="/videos/hero-video.mov" type="video/mp4" />
