@@ -157,16 +157,16 @@ const Hero = ({
       {/* Bottom fade - stronger */}
       <div className="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-black via-black/90 to-transparent z-10 pointer-events-none"></div>
 
-      <div className={`p-6 max-w-7xl mx-auto relative z-20 w-full pt-48 md:pt-56 flex flex-col items-start justify-start transition-all duration-700 delay-200 ease-out ${isVideoReady ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+      <div className="p-6 max-w-7xl mx-auto relative z-20 w-full pt-48 md:pt-56 flex flex-col items-start justify-start">
         <h1 className="text-3xl md:text-5xl font-playfair font-bold text-heading leading-tight">
           Perinteinen käsityö.<br />
           Moderni toteutus.<br />
           <span className="text-heading">Ajaton lopputulos.</span>
         </h1>
-        <p className={`mt-4 text-lg text-gray-300 max-w-xl transition-all duration-700 delay-300 ease-out ${isVideoReady ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+        <p className="mt-4 text-lg text-gray-300 max-w-xl">
           Palvelemme teitä perinne- ja korjausrakentamisen saralla.
         </p>
-        <div className={`flex flex-col sm:flex-row gap-4 justify-start items-center mt-6 transition-all duration-700 delay-400 ease-out ${isVideoReady ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+        <div className="flex flex-col sm:flex-row gap-4 justify-start items-center mt-6">
           <GradientButton onClick={() => {
             document.getElementById('contact')?.scrollIntoView({
               behavior: 'smooth'
