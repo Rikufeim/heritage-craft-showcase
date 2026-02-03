@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Menu, X, ArrowRight, Phone, Mail, CheckCircle2 } from 'lucide-react';
 import Introduction from './components/Introduction';
 import ServicesSodergard from './components/ServicesSodergard';
@@ -116,12 +116,20 @@ const Hero = ({
 }: {
   onNavigate: (dest: string) => void;
 }) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    // Trigger animation after mount
+    const timer = setTimeout(() => setIsLoaded(true), 100);
+    return () => clearTimeout(timer);
+  }, []);
+
   return <div className="bg-black w-full pb-32">
     <section id="hero" className="min-h-[40rem] rounded-b-[2.5rem] flex flex-col items-start justify-start bg-black antialiased relative overflow-hidden border-b border-neutral-800 shadow-2xl w-full">
       <FloatingDock onNavigate={onNavigate} />
 
-      {/* Full-width video background */}
-      <div className="absolute top-20 left-0 right-0 bottom-0 z-0 rounded-t-[2rem] overflow-hidden mx-0">
+      {/* Full-width video background with fade-in animation */}
+      <div className={`absolute top-20 left-0 right-0 bottom-0 z-0 rounded-t-[2rem] overflow-hidden mx-0 transition-all duration-1000 ease-out ${isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-105'}`}>
         <video autoPlay loop muted playsInline className="w-full h-full object-cover">
           <source src="/videos/hero-video.mov" type="video/quicktime" />
           <source src="/videos/hero-video.mov" type="video/mp4" />
@@ -142,16 +150,16 @@ const Hero = ({
       {/* Bottom fade - stronger */}
       <div className="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-black via-black/90 to-transparent z-10 pointer-events-none"></div>
 
-      <div className="p-6 max-w-7xl mx-auto relative z-20 w-full pt-48 md:pt-56 flex flex-col items-start justify-start">
+      <div className={`p-6 max-w-7xl mx-auto relative z-20 w-full pt-48 md:pt-56 flex flex-col items-start justify-start transition-all duration-1000 delay-300 ease-out ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         <h1 className="text-3xl md:text-5xl font-playfair font-bold text-heading leading-tight">
           Perinteinen käsityö.<br />
           Moderni toteutus.<br />
           <span className="text-heading">Ajaton lopputulos.</span>
         </h1>
-        <p className="mt-4 text-lg text-gray-300 max-w-xl">
+        <p className={`mt-4 text-lg text-gray-300 max-w-xl transition-all duration-1000 delay-500 ease-out ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
           Palvelemme teitä perinne- ja korjausrakentamisen saralla.
         </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-start items-center mt-6">
+        <div className={`flex flex-col sm:flex-row gap-4 justify-start items-center mt-6 transition-all duration-1000 delay-700 ease-out ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
           <GradientButton onClick={() => {
             document.getElementById('contact')?.scrollIntoView({
               behavior: 'smooth'
