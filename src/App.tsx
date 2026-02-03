@@ -172,16 +172,18 @@ const Hero = ({
         <p className={`mt-4 text-lg text-gray-300 max-w-xl transition-all duration-700 delay-150 ease-out ${isContentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
           Palvelemme teitä perinne- ja korjausrakentamisen saralla.
         </p>
-        <div className={`flex flex-col sm:flex-row gap-4 justify-start items-center mt-6 transition-all duration-700 delay-300 ease-out ${isContentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+        <div className={`flex flex-col sm:flex-row gap-4 sm:gap-6 justify-start items-center mt-6 transition-all duration-700 delay-300 ease-out ${isContentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
           <GradientButton onClick={() => {
             document.getElementById('contact')?.scrollIntoView({
               behavior: 'smooth'
             });
           }}>
             Ota yhteyttä
-            <ArrowRight size={20} />
           </GradientButton>
-          
+          <a href="tel:+358449700432" className="flex items-center gap-2 text-heading hover:text-amber-300 transition-colors font-medium">
+            <Phone size={20} />
+            <span>+358 44 970 0432</span>
+          </a>
         </div>
       </div>
     </section>
