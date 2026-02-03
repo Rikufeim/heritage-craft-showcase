@@ -240,7 +240,7 @@ const ContactSection = () => {
               </div>
               <div className="pt-4 space-y-3">
                 <div>
-                  <p className="font-bold text-white">Janne Södergård</p>
+                  <p className="font-bold text-white">Janne Aikonen <span className="font-normal text-gray-400">– Toimitusjohtaja</span></p>
                   <a href="tel:+358449700432" className="flex items-center gap-2 text-amber-400 hover:text-amber-300 transition-colors font-medium">
                     <Phone size={18} />
                     +358 44 970 0432
