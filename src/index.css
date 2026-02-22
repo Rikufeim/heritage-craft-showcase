@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -39,19 +35,12 @@ All colors MUST be HSL.
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
 
     /* Gold accent colors - Tikkurila H626 */
@@ -61,6 +50,10 @@ All colors MUST be HSL.
 
     /* Heading color - Tikkurila H626 warm gold */
     --heading: 43 65% 71%;
+
+    /* Site background - warm near-black */
+    --site-bg: 20 33% 3%;
+    --site-bg-secondary: 20 20% 6%;
   }
 
   .dark {
@@ -100,13 +93,12 @@ All colors MUST be HSL.
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
 
-    /* Gold accent colors - Tikkurila H626 */
     --gold: 43 65% 71%;
     --gold-light: 43 65% 78%;
     --gold-dark: 43 55% 60%;
-
-    /* Heading color - Tikkurila H626 warm gold */
     --heading: 43 65% 71%;
+    --site-bg: 20 33% 3%;
+    --site-bg-secondary: 20 20% 6%;
   }
 }
 
@@ -116,7 +108,7 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-site-bg text-foreground;
   }
 }
 
@@ -133,6 +125,14 @@ All colors MUST be HSL.
   .border-gold-gradient {
     border-image: linear-gradient(135deg, hsl(32 81% 43%), hsl(45 93% 58%), hsl(32 81% 43%)) 1;
   }
+
+  .text-shadow-hero {
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6), 0 1px 3px rgba(0, 0, 0, 0.4);
+  }
+
+  .text-shadow-sm {
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  }
 }
 
 /* Custom Scrollbar - Dark Grey (hidden on mobile) */
@@ -142,13 +142,13 @@ All colors MUST be HSL.
   }
 
   ::-webkit-scrollbar-track {
-    background: #0a0a0a;
+    background: hsl(20 33% 3%);
   }
 
   ::-webkit-scrollbar-thumb {
     background: #333;
     border-radius: 7px;
-    border: 4px solid #0a0a0a;
+    border: 4px solid hsl(20 33% 3%);
   }
 
   ::-webkit-scrollbar-thumb:hover {

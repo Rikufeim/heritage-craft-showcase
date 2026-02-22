@@ -1,133 +1,93 @@
-
 import React, { useState } from 'react';
-import { X } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 
 const ServiceItem = ({
-    title,
-    description,
+  title,
+  description,
 }: {
-    title: string;
-    description: string;
+  title: string;
+  description: string;
 }) => {
-    return (
-        <div className="py-8 border-b border-neutral-800 first:border-t hover:border-neutral-700 transition-colors duration-300">
-            <div className="flex flex-col md:flex-row justify-between gap-4 md:items-start text-left">
-                <div className="space-y-2 max-w-2xl">
-                    <h3 className="text-2xl font-playfair font-bold text-white mb-2">{title}</h3>
-                    <p className="text-gray-400 text-lg leading-relaxed">{description}</p>
-                </div>
-            </div>
-        </div>
-    );
-};
+  const [isOpen, setIsOpen] = useState(false);
 
-/* Reusing the Lightbox inline */
-const SimpleLightbox = ({ src, alt, onClose }: { src: string | null, alt: string, onClose: () => void }) => {
-    if (!src) return null;
-    return (
-        <div className="fixed inset-0 z-[60] bg-black/90 flex items-center justify-center p-4 animate-in fade-in duration-200" onClick={onClose}>
-            <button className="absolute top-4 right-4 text-white hover:text-amber-500 transition-colors" onClick={onClose}>
-                <X size={40} />
-            </button>
-            <img src={src} alt={alt} className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl" onClick={e => e.stopPropagation()} />
-        </div>
-    );
+  return (
+    <div className="py-5 border-b border-neutral-800/60 last:border-b-0">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="hidden md:flex w-full items-center justify-between text-left group"
+      >
+        <h3 className="text-xl font-playfair font-bold text-white group-hover:text-heading transition-colors">
+          {title}
+        </h3>
+        <ChevronDown
+          size={20}
+          className={`text-gray-500 group-hover:text-heading transition-all duration-300 ${isOpen ? 'rotate-180' : ''}`}
+        />
+      </button>
+      {/* Mobile: just name */}
+      <h3 className="md:hidden text-lg font-playfair font-bold text-white">{title}</h3>
+      {/* Desktop: expandable description */}
+      <div
+        className={`hidden md:block overflow-hidden transition-all duration-300 ${
+          isOpen ? 'max-h-40 opacity-100 mt-3' : 'max-h-0 opacity-0'
+        }`}
+      >
+        <p className="text-gray-400 text-base leading-relaxed">{description}</p>
+      </div>
+    </div>
+  );
 };
 
 const ServicesSodergard = () => {
-    const [lightboxImage, setLightboxImage] = useState<string | null>(null);
+  const services = [
+    {
+      title: "Hirsirakennusten nosto ja siirto",
+      description: "Rakennusten turvallinen nosto ja siirto alkuperäistä rakennetta ja arvoa kunnioittaen."
+    },
+    {
+      title: "Hirren vaihto",
+      description: "Lahonneiden tai vaurioituneiden hirsien huolellinen vaihto perinteitä kunnioittaen."
+    },
+    {
+      title: "Sisustuskirvesmiehentyöt",
+      description: "Listoitukset, paneelit ja puusepäntyöt rakennuksen alkuperäistä henkeä vaalien."
+    },
+    {
+      title: "Luonnonkiviperustukset",
+      description: "Uudet luonnonkiviperustukset ja vanhojen kivijalkojen korjaus perinteisin menetelmin."
+    },
+    {
+      title: "Rakenteet",
+      description: "Vesikattojen, väli- ja alapohjien korjaus kestävillä ja toimivilla ratkaisuilla."
+    },
+    {
+      title: "Pintakäsittelyt",
+      description: "Perinteiset pintakäsittelymenetelmät, jotka suojaavat ja kaunistavat rakennusta."
+    },
+    {
+      title: "Savirappaus",
+      description: "Luonnollinen ja hengittävä ratkaisu, joka parantaa sisäilmaa ja energiatehokkuutta."
+    },
+    {
+      title: "Ikkunoiden ja ovien entisöinti",
+      description: "Historiallisten ikkunoiden ja ovien kunnostus – ulkonäkö säilyy ja energiatehokkuus paranee."
+    }
+  ];
 
-    const services = [
-        {
-            title: "Hirsirakennusten nosto ja siirto",
-            description: "Rakennusten turvallinen nosto ja siirto alkuperäistä rakennetta ja arvoa kunnioittaen."
-        },
-        {
-            title: "Hirren vaihto",
-            description: "Lahonneiden tai vaurioituneiden hirsien huolellinen vaihto perinteitä kunnioittaen."
-        },
-        {
-            title: "Sisustuskirvesmiehentyöt",
-            description: "Listoitukset, paneelit ja puusepäntyöt rakennuksen alkuperäistä henkeä vaalien."
-        },
-        {
-            title: "Luonnonkiviperustukset",
-            description: "Uudet luonnonkiviperustukset ja vanhojen kivijalkojen korjaus perinteisin menetelmin."
-        },
-        {
-            title: "Rakenteet",
-            description: "Vesikattojen, väli- ja alapohjien korjaus kestävillä ja toimivilla ratkaisuilla."
-        },
-        {
-            title: "Pintakäsittelyt",
-            description: "Perinteiset pintakäsittelymenetelmät, jotka suojaavat ja kaunistavat rakennusta."
-        },
-        {
-            title: "Savirappaus",
-            description: "Luonnollinen ja hengittävä ratkaisu, joka parantaa sisäilmaa ja energiatehokkuutta."
-        },
-        {
-            title: "Ikkunoiden ja ovien entisöinti",
-            description: "Historiallisten ikkunoiden ja ovien kunnostus – ulkonäkö säilyy ja energiatehokkuus paranee."
-        }
-    ];
-
-    const galleryImages = [
-        { src: '/palvelut/restaurointi-7.jpg', alt: "Kattotyö ja ullakkorakenteet" },
-        { src: '/palvelut/restaurointi-8.jpg', alt: "Pilarien restaurointi telineissä" },
-        { src: '/palvelut/restaurointi-9.jpg', alt: "Restaurointi ullakolla" },
-        { src: '/palvelut/restaurointi-5.jpg', alt: "Perinteinen puutyö - hirsirakenne" },
-        { src: '/palvelut/restaurointi-10.jpg', alt: "Hirsirakenteen yksityiskohta" },
-        { src: '/palvelut/perinteet-1.jpg', alt: "Perinteinen rakennus" },
-    ];
-
-    return (
-        <section className="py-32 px-6 bg-black">
-            <div className="max-w-7xl mx-auto space-y-20">
-
-                {/* Header */}
-                <div className="text-center space-y-4">
-                    <h2 className="text-4xl md:text-5xl font-playfair font-bold text-white">
-                        Palvelut – <span className="text-heading">Restaurointi Södergård Oy</span>
-                    </h2>
-                    <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-                        Erikoisosaamistamme ovat vaativat restaurointi- ja korjaustyöt, joissa yhdistyvät perinteiset menetelmät, syvä materiaalituntemus ja tinkimätön laatu.
-                    </p>
-                </div>
-
-                {/* Gallery Grid */}
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 h-96 md:h-[500px]">
-                    {galleryImages.map((img, i) => (
-                        <div
-                            key={i}
-                            className="relative overflow-hidden rounded-xl border border-neutral-800 cursor-pointer group h-full"
-                            onClick={() => setLightboxImage(img.src)}
-                        >
-                            <img
-                                src={img.src}
-                                alt={img.alt}
-                                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80 group-hover:opacity-100"
-                            />
-                            <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-300" />
-                        </div>
-                    ))}
-                </div>
-
-                {/* Service List - Text Only Layout */}
-                <div className="max-w-4xl mx-auto w-full">
-                    {services.map((service, index) => (
-                        <ServiceItem key={index} {...service} />
-                    ))}
-                </div>
-            </div>
-
-            <SimpleLightbox
-                src={lightboxImage}
-                alt="Palvelukuva"
-                onClose={() => setLightboxImage(null)}
-            />
-        </section>
-    );
+  return (
+    <section className="py-16 md:py-24 px-6 bg-site-bg">
+      <div className="max-w-3xl mx-auto">
+        <h2 className="text-3xl md:text-4xl font-playfair font-bold text-heading mb-10 text-center">
+          Palvelut
+        </h2>
+        <div>
+          {services.map((service, index) => (
+            <ServiceItem key={index} {...service} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default ServicesSodergard;

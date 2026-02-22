@@ -23,6 +23,8 @@ export default {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         'heading': 'hsl(var(--heading))',
+        'site-bg': 'hsl(var(--site-bg))',
+        'site-bg-secondary': 'hsl(var(--site-bg-secondary))',
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
