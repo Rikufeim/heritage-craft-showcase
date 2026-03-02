@@ -87,14 +87,17 @@ const Hero = ({
         <FloatingDock onNavigate={onNavigate} />
 
         {/* Video background */}
-        <div className={`absolute inset-0 z-0 overflow-hidden transition-opacity duration-700 ease-out ${isVideoReady ? 'opacity-100' : 'opacity-0'}`}>
+        <div className={`absolute inset-0 z-0 overflow-hidden transition-opacity duration-500 ease-out ${isVideoReady ? 'opacity-100' : 'opacity-0'}`}>
           <video autoPlay loop muted playsInline preload="auto"
+            onCanPlayThrough={() => setIsVideoReady(true)}
             onCanPlay={() => setIsVideoReady(true)}
             onLoadedData={() => setIsVideoReady(true)}
+            onLoadedMetadata={() => setIsVideoReady(true)}
             className="w-full h-full object-cover"
+            style={{ willChange: 'opacity' }}
           >
-            <source src="/videos/hero-video.mov" type="video/quicktime" />
             <source src="/videos/hero-video.mov" type="video/mp4" />
+            <source src="/videos/hero-video.mov" type="video/quicktime" />
           </video>
           <div className="absolute inset-0 bg-gradient-to-b from-site-bg/50 via-site-bg/30 to-site-bg pointer-events-none" />
           <div className="absolute inset-0 bg-site-bg/40 pointer-events-none" />
