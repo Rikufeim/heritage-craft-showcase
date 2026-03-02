@@ -25,28 +25,33 @@ const CookieBanner = () => {
   if (!visible) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-[60] p-4 animate-in slide-in-from-bottom duration-500">
-      <div className="max-w-4xl mx-auto bg-site-bg border border-neutral-700/60 rounded-xl p-4 md:p-5 shadow-2xl backdrop-blur-sm">
-        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-          <div className="flex items-start gap-3 flex-1">
-            <span className="text-2xl shrink-0 mt-0.5">🔒</span>
-            <p className="text-sm text-gray-300 leading-relaxed">
-              <span className="font-medium text-white">Evästekäytäntö</span>{' '}
-              – Käytämme evästeitä parantaaksemme käyttökokemustasi sivuillamme.
+    <div className="fixed bottom-0 left-0 right-0 z-[60] animate-in slide-in-from-bottom duration-500">
+      <div className="w-full bg-white border-t border-gray-200 px-6 py-3 shadow-lg">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center gap-4">
+          <div className="flex items-center gap-3 flex-1">
+            <svg className="w-5 h-5 text-gray-500 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+              <path d="M2 12h20" />
+            </svg>
+            <p className="text-sm text-gray-700">
+              <span className="font-bold text-gray-900">Käytämme evästeitä</span>
+              {' — '}
+              Käytämme evästeitä parantaaksemme käyttökokemustasi ja analysoidaksemme sivuston käyttöä. Voit hyväksyä tai hylätä evästeet.
             </p>
           </div>
           <div className="flex items-center gap-3 shrink-0">
             <button
               onClick={decline}
-              className="text-sm text-gray-400 hover:text-white transition-colors px-3 py-1.5"
+              className="text-sm text-gray-700 border border-gray-300 rounded-lg px-5 py-2 hover:bg-gray-100 transition-colors font-medium"
             >
               Hylkää
             </button>
             <button
               onClick={accept}
-              className="text-sm font-semibold bg-heading text-site-bg px-5 py-2 rounded-lg hover:bg-heading/90 transition-colors"
+              className="text-sm font-semibold bg-gray-900 text-white px-5 py-2 rounded-lg hover:bg-gray-800 transition-colors"
             >
-              Hyväksy
+              Hyväksy evästeet
             </button>
           </div>
         </div>
