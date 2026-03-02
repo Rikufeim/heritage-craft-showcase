@@ -75,12 +75,7 @@ const Hero = ({
 }: {
   onNavigate: (dest: string) => void;
 }) => {
-  const [isContentVisible, setIsContentVisible] = useState(false);
   const [isVideoReady, setIsVideoReady] = useState(false);
-
-  useEffect(() => {
-    setIsContentVisible(true);
-  }, []);
 
   return (
     <div className="bg-site-bg w-full">
@@ -110,15 +105,15 @@ const Hero = ({
           <img
             src="/sodergard/logo-large.png"
             alt="Södergård Logo"
-            className={`h-32 md:h-44 w-auto object-contain drop-shadow-2xl transition-all duration-700 ease-out ${isContentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
+            className={`h-32 md:h-44 w-auto object-contain drop-shadow-2xl transition-all duration-1000 ease-out ${isVideoReady ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
           />
-          <p className={`text-sm md:text-base font-playfair text-gray-200 text-shadow-sm tracking-wider uppercase transition-all duration-700 delay-100 ease-out ${isContentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+          <p className={`text-sm md:text-base font-playfair text-gray-200 text-shadow-sm tracking-wider uppercase transition-all duration-1000 delay-100 ease-out ${isVideoReady ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             Restaurointi Södergård Oy
           </p>
-          <p className={`text-base md:text-lg text-gray-300 text-shadow-sm font-light max-w-md transition-all duration-700 delay-200 ease-out ${isContentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+          <p className={`text-base md:text-lg text-gray-300 text-shadow-sm font-light max-w-md transition-all duration-1000 delay-200 ease-out ${isVideoReady ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             Perinteitä kunnioittaen, tulevaisuutta rakentaen
           </p>
-          <div className={`flex flex-col sm:flex-row gap-4 items-center pt-4 transition-all duration-700 delay-300 ease-out ${isContentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+          <div className={`flex flex-col sm:flex-row gap-4 items-center pt-4 transition-all duration-1000 delay-300 ease-out ${isVideoReady ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             <GradientButton onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
               Ota yhteyttä
             </GradientButton>
