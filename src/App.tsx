@@ -75,36 +75,26 @@ const Hero = ({
 }: {
   onNavigate: (dest: string) => void;
 }) => {
-  const [isVideoReady, setIsVideoReady] = useState(false);
   const [isContentVisible, setIsContentVisible] = useState(false);
-  const [showVideo, setShowVideo] = useState(false);
 
   useEffect(() => {
     setIsContentVisible(true);
   }, []);
-
-  // Delay video reveal slightly for a smooth entrance
-  useEffect(() => {
-    if (isVideoReady) {
-      const timer = setTimeout(() => setShowVideo(true), 100);
-      return () => clearTimeout(timer);
-    }
-  }, [isVideoReady]);
 
   return (
     <div className="bg-site-bg w-full">
       <section id="hero" className="min-h-[85vh] md:min-h-[90vh] flex flex-col items-center justify-center bg-site-bg antialiased relative overflow-hidden w-full">
         <FloatingDock onNavigate={onNavigate} />
 
-        {/* Video background */}
-        <div className={`absolute inset-0 z-0 overflow-hidden transition-opacity duration-1000 ease-in-out ${showVideo ? 'opacity-100' : 'opacity-0'}`}>
-          <video autoPlay loop muted playsInline preload="auto"
-            onCanPlayThrough={() => setIsVideoReady(true)}
-            onCanPlay={() => setIsVideoReady(true)}
-            onLoadedData={() => setIsVideoReady(true)}
-            onLoadedMetadata={() => setIsVideoReady(true)}
+        {/* Video background - always visible, no fade delay */}
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
             className="w-full h-full object-cover"
-            style={{ willChange: 'opacity' }}
           >
             <source src="/videos/hero-video.mov" type="video/mp4" />
             <source src="/videos/hero-video.mov" type="video/quicktime" />
