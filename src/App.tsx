@@ -76,6 +76,7 @@ const Hero = ({
   onNavigate: (dest: string) => void;
 }) => {
   const [isContentVisible, setIsContentVisible] = useState(false);
+  const [isVideoReady, setIsVideoReady] = useState(false);
 
   useEffect(() => {
     setIsContentVisible(true);
@@ -86,8 +87,8 @@ const Hero = ({
       <section id="hero" className="min-h-[85vh] md:min-h-[90vh] flex flex-col items-center justify-center bg-site-bg antialiased relative overflow-hidden w-full">
         <FloatingDock onNavigate={onNavigate} />
 
-        {/* Video background - always visible, no fade delay */}
-        <div className="absolute inset-0 z-0 overflow-hidden">
+        {/* Video background with smooth fade-in */}
+        <div className={`absolute inset-0 z-0 overflow-hidden transition-opacity duration-1000 ease-in-out ${isVideoReady ? 'opacity-100' : 'opacity-0'}`}>
           <video
             autoPlay
             loop
@@ -95,6 +96,7 @@ const Hero = ({
             playsInline
             preload="auto"
             className="w-full h-full object-cover"
+            onCanPlay={() => setIsVideoReady(true)}
           >
             <source src="/videos/hero-video.mp4" type="video/mp4" />
             <source src="/videos/hero-video.mov" type="video/quicktime" />
