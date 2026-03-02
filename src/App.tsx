@@ -96,7 +96,7 @@ const Hero = ({
             preload="auto"
             className="w-full h-full object-cover"
           >
-            <source src="/videos/hero-video.mov" type="video/mp4" />
+            <source src="/videos/hero-video.mp4" type="video/mp4" />
             <source src="/videos/hero-video.mov" type="video/quicktime" />
           </video>
           <div className="absolute inset-0 bg-gradient-to-b from-site-bg/50 via-site-bg/30 to-site-bg pointer-events-none" />
