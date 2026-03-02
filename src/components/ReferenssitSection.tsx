@@ -71,7 +71,7 @@ const ReferenssitSection = () => {
         {workCategories.map((cat, i) => (
           <span
             key={i}
-            className="text-sm md:text-base font-playfair font-bold px-4 py-2 text-heading"
+            className="text-sm md:text-base font-playfair font-bold px-4 py-2 text-gray-400"
           >
             {cat.title}
           </span>
