@@ -139,15 +139,15 @@ const FloatingContactButton = () => {
   return (
     <div className="fixed bottom-6 right-6 z-50">
       {isOpen && (
-        <div className="absolute bottom-16 right-0 mb-2 bg-site-bg border-2 border-heading rounded-2xl p-4 shadow-2xl shadow-heading/20 min-w-[220px] animate-in fade-in slide-in-from-bottom-2 duration-200">
-          <div className="space-y-3">
-            <a href="mailto:info@srgd.fi" className="flex items-center gap-3 text-white hover:text-heading transition-colors font-medium p-2 hover:bg-heading/10 rounded-lg">
-              <Mail size={20} className="text-heading" />
-              <span>info@srgd.fi</span>
+        <div className="absolute bottom-16 right-0 mb-2 bg-site-bg border border-heading/60 rounded-xl p-3 shadow-2xl shadow-heading/10 whitespace-nowrap animate-in fade-in slide-in-from-bottom-2 duration-200">
+          <div className="flex flex-col gap-2">
+            <a href="mailto:info@srgd.fi" className="flex items-center gap-2.5 text-gray-200 hover:text-heading transition-colors text-sm font-medium p-1.5 hover:bg-heading/10 rounded-lg">
+              <Mail size={16} className="text-heading shrink-0" />
+              info@srgd.fi
             </a>
-            <a href="tel:+358449700432" className="flex items-center gap-3 text-white hover:text-heading transition-colors font-medium p-2 hover:bg-heading/10 rounded-lg">
-              <Phone size={20} className="text-heading" />
-              <span>+358 44 970 0432</span>
+            <a href="tel:+358449700432" className="flex items-center gap-2.5 text-gray-200 hover:text-heading transition-colors text-sm font-medium p-1.5 hover:bg-heading/10 rounded-lg">
+              <Phone size={16} className="text-heading shrink-0" />
+              +358 44 970 0432
             </a>
           </div>
         </div>
