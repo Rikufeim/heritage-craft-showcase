@@ -147,7 +147,7 @@ const FloatingContactButton = () => {
             </a>
             <a href="tel:+358449700432" className="flex items-center gap-2.5 text-gray-200 hover:text-heading transition-colors text-sm font-medium p-1.5 hover:bg-heading/10 rounded-lg">
               <Phone size={16} className="text-heading shrink-0" />
-              +358 44 970 0432
+              Soita meille
             </a>
           </div>
         </div>
