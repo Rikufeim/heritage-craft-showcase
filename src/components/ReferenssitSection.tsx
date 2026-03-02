@@ -66,27 +66,34 @@ const ReferenssitSection = () => {
         </p>
       </div>
 
-      <div className="space-y-10 px-2 md:px-4">
-        {workCategories.map((category, ci) => (
-          <div key={ci}>
-            <h3 className="text-xl font-playfair font-bold text-white mb-4 px-4">{category.title}</h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3">
-              {category.images.map((img, ii) => (
-                <div
-                  key={ii}
-                  className="relative overflow-hidden rounded-xl border border-neutral-800/50 cursor-pointer group aspect-[4/3]"
-                  onClick={() => setLightboxImage(img.src)}
-                >
-                  <img
-                    src={img.src}
-                    alt={img.alt}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-85 group-hover:opacity-100"
-                  />
-                </div>
-              ))}
+      <div className="space-y-16 px-2 md:px-4">
+        {workCategories.map((category, ci) => {
+          const isEven = ci % 2 === 0;
+          return (
+            <div key={ci} className={`flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} gap-6 items-center`}>
+              {/* Text side */}
+              <div className={`md:w-1/4 px-4 ${isEven ? 'md:text-left' : 'md:text-right'}`}>
+                <h3 className="text-2xl font-playfair font-bold text-white">{category.title}</h3>
+              </div>
+              {/* Images side */}
+              <div className="md:w-3/4 grid grid-cols-2 gap-2 md:gap-3">
+                {category.images.map((img, ii) => (
+                  <div
+                    key={ii}
+                    className="relative overflow-hidden rounded-xl border border-neutral-800/50 cursor-pointer group aspect-[4/3]"
+                    onClick={() => setLightboxImage(img.src)}
+                  >
+                    <img
+                      src={img.src}
+                      alt={img.alt}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-85 group-hover:opacity-100"
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       <SimpleLightbox src={lightboxImage} alt="Referenssikuva" onClose={() => setLightboxImage(null)} />
