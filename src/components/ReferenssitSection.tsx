@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { X } from 'lucide-react';
 
 const SimpleLightbox = ({
@@ -52,13 +52,56 @@ const workCategories = [
   },
 ];
 
+const AnimatedCategory = ({ category, ci, onImageClick }: { category: typeof workCategories[0]; ci: number; onImageClick: (src: string) => void }) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setVisible(true); },
+      { threshold: 0.15 }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
+  const isEven = ci % 2 === 0;
+
+  return (
+    <div
+      ref={ref}
+      className={`flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} gap-6 items-center transition-all duration-700 ease-out ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+    >
+      <div className={`md:w-1/4 px-4 ${isEven ? 'md:text-left' : 'md:text-right'}`}>
+        <h3 className="text-3xl md:text-4xl font-playfair font-bold text-white">{category.title}</h3>
+      </div>
+      <div className="md:w-3/4 grid grid-cols-2 gap-2 md:gap-3">
+        {category.images.map((img, ii) => (
+          <div
+            key={ii}
+            className={`relative overflow-hidden rounded-xl border border-neutral-800/50 cursor-pointer group aspect-[4/3] transition-all duration-500 ease-out ${visible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
+            style={{ transitionDelay: visible ? `${200 + ii * 150}ms` : '0ms' }}
+            onClick={() => onImageClick(img.src)}
+          >
+            <img
+              src={img.src}
+              alt={img.alt}
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-85 group-hover:opacity-100"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 const ReferenssitSection = () => {
   const [lightboxImage, setLightboxImage] = useState<string | null>(null);
 
   return (
     <section id="referenssit" className="py-16 md:py-24 bg-site-bg">
       <div className="px-6 text-center mb-12">
-        <h2 className="text-3xl md:text-4xl font-playfair font-bold text-heading mb-3">
+        <h2 className="text-4xl md:text-5xl font-playfair font-bold text-heading mb-3">
           Referenssit
         </h2>
         <p className="text-gray-400 max-w-xl mx-auto text-base">
@@ -67,33 +110,9 @@ const ReferenssitSection = () => {
       </div>
 
       <div className="space-y-16 px-2 md:px-4">
-        {workCategories.map((category, ci) => {
-          const isEven = ci % 2 === 0;
-          return (
-            <div key={ci} className={`flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} gap-6 items-center`}>
-              {/* Text side */}
-              <div className={`md:w-1/4 px-4 ${isEven ? 'md:text-left' : 'md:text-right'}`}>
-                <h3 className="text-2xl font-playfair font-bold text-white">{category.title}</h3>
-              </div>
-              {/* Images side */}
-              <div className="md:w-3/4 grid grid-cols-2 gap-2 md:gap-3">
-                {category.images.map((img, ii) => (
-                  <div
-                    key={ii}
-                    className="relative overflow-hidden rounded-xl border border-neutral-800/50 cursor-pointer group aspect-[4/3]"
-                    onClick={() => setLightboxImage(img.src)}
-                  >
-                    <img
-                      src={img.src}
-                      alt={img.alt}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-85 group-hover:opacity-100"
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          );
-        })}
+        {workCategories.map((category, ci) => (
+          <AnimatedCategory key={ci} category={category} ci={ci} onImageClick={src => setLightboxImage(src)} />
+        ))}
       </div>
 
       <SimpleLightbox src={lightboxImage} alt="Referenssikuva" onClose={() => setLightboxImage(null)} />
