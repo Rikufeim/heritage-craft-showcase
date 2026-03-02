@@ -56,39 +56,37 @@ const ReferenssitSection = () => {
   const [lightboxImage, setLightboxImage] = useState<string | null>(null);
 
   return (
-    <section id="referenssit" className="py-16 md:py-24 px-6 bg-site-bg">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-playfair font-bold text-heading mb-3">
-            Referenssit
-          </h2>
-          <p className="text-gray-400 max-w-xl mx-auto text-base">
-            Tutustu toteuttamiimme kohteisiin työlajeittain.
-          </p>
-        </div>
+    <section id="referenssit" className="py-16 md:py-24 bg-site-bg">
+      <div className="px-6 text-center mb-12">
+        <h2 className="text-3xl md:text-4xl font-playfair font-bold text-heading mb-3">
+          Referenssit
+        </h2>
+        <p className="text-gray-400 max-w-xl mx-auto text-base">
+          Tutustu toteuttamiimme kohteisiin työlajeittain.
+        </p>
+      </div>
 
-        <div className="space-y-12">
-          {workCategories.map((category, ci) => (
-            <div key={ci}>
-              <h3 className="text-xl font-playfair font-bold text-white mb-4">{category.title}</h3>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                {category.images.map((img, ii) => (
-                  <div
-                    key={ii}
-                    className="relative overflow-hidden rounded-xl border border-neutral-800/50 cursor-pointer group aspect-[4/3]"
-                    onClick={() => setLightboxImage(img.src)}
-                  >
-                    <img
-                      src={img.src}
-                      alt={img.alt}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-85 group-hover:opacity-100"
-                    />
-                  </div>
-                ))}
-              </div>
+      <div className="space-y-10 px-2 md:px-4">
+        {workCategories.map((category, ci) => (
+          <div key={ci}>
+            <h3 className="text-xl font-playfair font-bold text-white mb-4 px-4">{category.title}</h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3">
+              {category.images.map((img, ii) => (
+                <div
+                  key={ii}
+                  className="relative overflow-hidden rounded-xl border border-neutral-800/50 cursor-pointer group aspect-[4/3]"
+                  onClick={() => setLightboxImage(img.src)}
+                >
+                  <img
+                    src={img.src}
+                    alt={img.alt}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-85 group-hover:opacity-100"
+                  />
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
 
       <SimpleLightbox src={lightboxImage} alt="Referenssikuva" onClose={() => setLightboxImage(null)} />
