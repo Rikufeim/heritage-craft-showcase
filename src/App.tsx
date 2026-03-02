@@ -6,6 +6,7 @@ import ValuesAndPrinciples from './components/ValuesAndPrinciples';
 import ImageGalleryGrid from './components/ImageGalleryGrid';
 import GradientButton from './components/ui/GradientButton';
 import ReferenssitSection from './components/ReferenssitSection';
+import CookieBanner from './components/CookieBanner';
 
 /**
  * FloatingDock - Navigation bar
@@ -76,10 +77,19 @@ const Hero = ({
 }) => {
   const [isVideoReady, setIsVideoReady] = useState(false);
   const [isContentVisible, setIsContentVisible] = useState(false);
+  const [showVideo, setShowVideo] = useState(false);
 
   useEffect(() => {
     setIsContentVisible(true);
   }, []);
+
+  // Delay video reveal slightly for a smooth entrance
+  useEffect(() => {
+    if (isVideoReady) {
+      const timer = setTimeout(() => setShowVideo(true), 100);
+      return () => clearTimeout(timer);
+    }
+  }, [isVideoReady]);
 
   return (
     <div className="bg-site-bg w-full">
@@ -87,7 +97,7 @@ const Hero = ({
         <FloatingDock onNavigate={onNavigate} />
 
         {/* Video background */}
-        <div className={`absolute inset-0 z-0 overflow-hidden transition-opacity duration-500 ease-out ${isVideoReady ? 'opacity-100' : 'opacity-0'}`}>
+        <div className={`absolute inset-0 z-0 overflow-hidden transition-opacity duration-1000 ease-in-out ${showVideo ? 'opacity-100' : 'opacity-0'}`}>
           <video autoPlay loop muted playsInline preload="auto"
             onCanPlayThrough={() => setIsVideoReady(true)}
             onCanPlay={() => setIsVideoReady(true)}
@@ -249,7 +259,7 @@ const ContactSection = () => {
 const Footer = () => {
   return (
     <div className="bg-site-bg w-full px-2 pb-2">
-      <footer id="footer" className="relative py-10 px-6 overflow-hidden bg-site-bg-secondary rounded-[2rem] border border-neutral-800/40">
+      <footer id="footer" className="relative py-10 px-6 overflow-hidden">
         <div className="max-w-7xl mx-auto text-center space-y-4">
           <div className="flex justify-center gap-6 mb-3">
             <a href="https://www.facebook.com/Restaurointisodergardoy/?locale=fi_FI" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-heading transition-colors">
@@ -291,6 +301,7 @@ const App = () => {
   return (
     <div className="bg-site-bg min-h-screen font-sans antialiased selection:bg-amber-900 selection:text-white text-white">
       <FloatingContactButton />
+      <CookieBanner />
 
       {view === 'home' && (
         <div className="flex flex-col">
