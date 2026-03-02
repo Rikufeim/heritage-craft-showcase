@@ -28,9 +28,12 @@ const CookieBanner = () => {
     <div className="fixed bottom-0 left-0 right-0 z-[60] p-4 animate-in slide-in-from-bottom duration-500">
       <div className="max-w-4xl mx-auto bg-site-bg border border-neutral-700/60 rounded-xl p-4 md:p-5 shadow-2xl backdrop-blur-sm">
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-          <div className="flex-1 text-sm text-gray-300 leading-relaxed">
-            <span className="font-medium text-white">Evästeet 🍪</span>{' '}
-            Käytämme evästeitä parantaaksemme käyttökokemustasi sivuillamme.
+          <div className="flex items-start gap-3 flex-1">
+            <span className="text-2xl shrink-0 mt-0.5">🔒</span>
+            <p className="text-sm text-gray-300 leading-relaxed">
+              <span className="font-medium text-white">Evästekäytäntö</span>{' '}
+              – Käytämme evästeitä parantaaksemme käyttökokemustasi sivuillamme.
+            </p>
           </div>
           <div className="flex items-center gap-3 shrink-0">
             <button
