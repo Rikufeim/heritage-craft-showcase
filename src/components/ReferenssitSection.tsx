@@ -70,12 +70,12 @@ const AnimatedCategory = ({ category, ci, onImageClick }: { category: typeof wor
   return (
     <div
       ref={ref}
-      className={`flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} gap-4 md:gap-6 md:items-center transition-all duration-700 ease-out ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+      className={`transition-all duration-700 ease-out ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
     >
-      <div className={`md:w-1/4 px-4 shrink-0 ${isEven ? 'md:text-left' : 'md:text-right'}`}>
+      <div className={`mb-4 px-4 ${isEven ? 'md:text-left' : 'md:text-right'}`}>
         <h3 className="text-2xl md:text-4xl font-playfair font-bold text-white">{category.title}</h3>
       </div>
-      <div className="md:w-3/4 grid grid-cols-2 gap-2 md:gap-3">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3">
         {category.images.map((img, ii) => (
           <div
             key={ii}
